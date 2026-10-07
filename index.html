@@ -924,7 +924,7 @@ function detectLang() {
   const h = location.hash.slice(1).toLowerCase();
   if (h === "el" || h === "en") return h;
   try { const s = localStorage.getItem("lang"); if (s === "el" || s === "en") return s; } catch (e) {}
-  return (navigator.language || "en").toLowerCase().startsWith("el") ? "el" : "en";
+  return "en";
 }
 function applyLang(l, { first = false, fromUser = false } = {}) {
   lang = l;
