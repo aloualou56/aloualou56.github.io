@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elias · aloualou56</title>
+<meta name="description" content="Elias, a second-year student at the International Hellenic University (ΔΙΠΑΕ Σερρών) and a teacher in the Robotic Sports department of M.G.S. Panserraikos in Serres, builds games, web apps and small hardware gadgets. Projects, tech stack and contact.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e0c0f'/%3E%3Cpath d='M8 10l7 6-7 6' fill='none' stroke='%23fb4362' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 23h8' stroke='%23ece5e9' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a terminal, kept clean. One monospace face, a prompt for every section heading, comments in
+   grey, key/value output for facts, ANSI-style colours for meaning (cyan keys and paths, green for public,
+   one pink-red accent from the GitHub profile). The headline types itself; everything else stays still. */
+:root {
+  --bg: #0e0c0f;
+  --bg-2: #141116;
+  --bg-3: #1b161c;
+  --line: #2a2229;
+  --line-2: #413640;
+  --fg: #ece5e9;
+  --fg-2: #c3b8be;
+  --muted: #8d8189;
+  --accent: #fb4362;
+  --on-accent: #1c0a0f;
+  --green: #6fe0a0;
+  --cyan: #56c4f5;
+  --amber: #ffc56b;
+  --violet: #b79bff;
+  --orange: #ff9a6b;
+  --grey: #a89ca3;
+  --c-games: var(--violet);
+  --c-web: var(--cyan);
+  --c-android: var(--green);
+  --c-hardware: var(--amber);
+  --c-automation: var(--orange);
+  --c-coursework: var(--grey);
+  --font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --gutter: clamp(16px, 4vw, 32px);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #faf7f8;
+    --bg-2: #ffffff;
+    --bg-3: #f1eaed;
+    --line: #e5dce1;
+    --line-2: #cfc1c9;
+    --fg: #1b1418;
+    --fg-2: #40343b;
+    --muted: #6c5f66;
+    --accent: #d41f45;
+    --on-accent: #ffffff;
+    --green: #167a45;
+    --cyan: #0a74a6;
+    --amber: #9a5b00;
+    --violet: #6249c9;
+    --orange: #b84a14;
+    --grey: #6b6068;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #faf7f8;
+  --bg-2: #ffffff;
+  --bg-3: #f1eaed;
+  --line: #e5dce1;
+  --line-2: #cfc1c9;
+  --fg: #1b1418;
+  --fg-2: #40343b;
+  --muted: #6c5f66;
+  --accent: #d41f45;
+  --on-accent: #ffffff;
+  --green: #167a45;
+  --cyan: #0a74a6;
+  --amber: #9a5b00;
+  --violet: #6249c9;
+  --orange: #b84a14;
+  --grey: #6b6068;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 0.9375rem/1.7 var(--font); font-variant-ligatures: none; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.skip { position: absolute; left: -999px; top: 8px; z-index: 100; padding: 8px 12px; border-radius: 3px; background: var(--accent); color: var(--on-accent); font-weight: 700; }
+.skip:focus { left: 8px; }
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
+
+/* terminal vocabulary */
+.ps { color: var(--accent); font-style: normal; font-weight: 700; }
+.path { color: var(--cyan); }
+.flag { color: var(--amber); }
+.comment { color: var(--muted); }
+.comment::before { content: "# "; }
+.caret { display: inline-block; width: 0.55em; height: 1.05em; margin-left: 0.1em; vertical-align: -0.16em; background: var(--accent); animation: blink 1.1s steps(1) infinite; }
+.caret.sm { width: 0.6em; height: 1em; margin-left: 0.3em; vertical-align: -0.15em; }
+.is-typing .caret { animation: none; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* header */
+.site-header { position: static; z-index: 20; background: var(--bg); background: color-mix(in srgb, var(--bg) 95%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; min-height: 52px; }
+.brand { margin-right: auto; padding-block: 14px; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.brand .user { color: var(--green); }
+.brand .at, .brand .sep { color: var(--muted); }
+.nav { display: flex; gap: 2px; }
+.nav a { padding: 10px; color: var(--fg-2); font-size: 0.8125rem; text-decoration: none; white-space: nowrap; }
+@media (hover: hover) { .nav a:hover { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 5px; } }
+.theme { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 3px; background: transparent; color: var(--fg-2); cursor: pointer; }
+@media (hover: hover) { .theme:hover { color: var(--fg); border-color: var(--fg-2); } }
+.theme svg { width: 16px; height: 16px; }
+@media (min-width: 821px) and (min-height: 521px) {
+  .site-header { position: sticky; top: env(safe-area-inset-top, 0px); }
+  html { scroll-padding-top: 64px; }
+}
+@media (max-width: 820px) {
+  .bar { padding-block: 8px; }
+  .nav { order: 3; flex-wrap: wrap; width: 100%; margin-inline: -8px; }
+  .nav a { padding-inline: 8px; }
+}
+
+/* hero */
+.hero { padding-block: clamp(32px, 6vw, 72px) clamp(24px, 4vw, 48px); }
+.hero-eyebrow p { margin: 0; font-size: 0.8125rem; }
+@media (max-width: 340px) { .hero-eyebrow p { font-size: 0.75rem; } }
+.hero-eyebrow a { display: inline-block; padding-block: 2px; color: var(--accent); text-underline-offset: 3px; }
+h1 { margin: 10px 0 0; font: 800 min(3.25rem, calc((100vw - 2 * var(--gutter)) / (var(--h1-chars, 24) * 0.6 + 1.1)))/1.15 var(--font); letter-spacing: -0.03em; text-wrap: balance; }
+#typed { color: var(--accent); white-space: pre-wrap; }
+/* While the words type, the line stays on one row (the font size is fitted to the longest word).
+   The finished sentence shown without animation or without JavaScript is longer, so it may wrap. */
+h1.types { white-space: nowrap; }
+h1.types #typed { white-space: pre; }
+.hero-cols { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 28px clamp(28px, 5vw, 64px); align-items: start; margin-top: clamp(24px, 4vw, 40px); }
+@media (max-width: 860px) { .hero-cols { grid-template-columns: minmax(0, 1fr); } }
+.lead { margin: 0 0 24px; max-width: 58ch; color: var(--fg-2); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border: 1px solid var(--line-2); border-radius: 3px; background: transparent; color: var(--fg); font-size: 0.8125rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+@media (hover: hover) { .btn:hover { border-color: var(--fg-2); } }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@media (hover: hover) { .btn.primary:hover { filter: brightness(1.08); } }
+
+.term { border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg-2); overflow: hidden; }
+.term-bar { display: flex; justify-content: space-between; gap: 12px; padding: 8px 14px; border-bottom: 1px solid var(--line); background: var(--bg-3); font-size: 0.75rem; color: var(--muted); }
+.term-body { padding: 14px 16px 16px; font-size: 0.8125rem; }
+.cmd { margin: 0 0 8px; }
+.term dl { display: grid; gap: 4px; margin: 0 0 12px; }
+.term .row { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 12px; }
+.term dt { color: var(--cyan); }
+.term dd { margin: 0; }
+.term dd a { color: var(--accent); text-underline-offset: 3px; }
+.term .cmd:last-child { margin: 0; }
+
+/* sections */
+.section { padding-block: clamp(28px, 5vw, 52px); }
+.section-head { display: grid; gap: 8px; margin-bottom: 22px; }
+h2 { margin: 0; font: 700 clamp(1.05rem, 2.4vw, 1.4rem)/1.3 var(--font); letter-spacing: -0.01em; }
+.sub { margin: 0; font-size: 0.8125rem; max-width: 100ch; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 11px; border: 1px solid var(--line-2); border-radius: 3px; background: transparent; color: var(--fg-2); font-size: 0.75rem; line-height: 1; cursor: pointer; }
+@media (hover: hover) { .chip:not([aria-pressed="true"]):hover { color: var(--fg); border-color: var(--fg-2); } }
+.chip[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.chip small { font-size: 0.75rem; opacity: 0.65; }
+.status { margin: 0 0 14px; font-size: 0.75rem; color: var(--muted); }
+
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); border-radius: 4px; background: var(--bg-2); overflow: hidden; transition: border-color 0.15s; }
+@media (hover: hover) { .card:hover { border-color: var(--line-2); } }
+.cover { position: relative; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); background: var(--bg-3); overflow: hidden; }
+.cover img { width: 100%; height: 100%; object-fit: cover; }
+.flow { position: absolute; inset: 0; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 8px; padding: 26px 16px 16px;
+  background-image: linear-gradient(color-mix(in srgb, var(--line) 80%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--line) 80%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px; }
+.flow-label { position: absolute; left: 12px; top: 9px; font-size: 0.75rem; line-height: 1; color: var(--muted); }
+.flow-label::before { content: "# "; }
+.node { max-width: 100%; padding: 4px 8px; border: 1px solid var(--line-2); border-radius: 2px; background: var(--bg-2); color: var(--fg); font-size: 0.75rem; line-height: 1.3; overflow-wrap: anywhere; }
+.flow.chain { flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 0; padding: 28px 16px 10px; }
+.arrow { display: block; width: 10px; height: 10px; margin-block: 2px; color: var(--accent); }
+.body { display: flex; flex: 1; flex-direction: column; gap: 10px; padding: 16px; }
+.topline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; font-size: 0.75rem; }
+.kinds { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+.kind { color: var(--kc, var(--muted)); }
+.kind::before { content: "#"; }
+.vis { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+.vis.pub { color: var(--green); }
+.vis svg { width: 11px; height: 11px; }
+h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
+.tagline { margin: 0; font-size: 0.8125rem; font-weight: 600; }
+.desc { margin: 0; font-size: 0.8125rem; line-height: 1.65; color: var(--fg-2); }
+.meta { display: grid; gap: 3px; margin: 4px 0 0; font-size: 0.75rem; }
+.meta div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 8px; }
+.meta dt { color: var(--cyan); }
+.meta dd { margin: 0; color: var(--fg-2); }
+.meta dd a { color: var(--accent); }
+.links { display: flex; flex-wrap: wrap; gap: 0 14px; margin-top: auto; padding-top: 4px; font-size: 0.8125rem; font-weight: 600; }
+.links a { padding-block: 8px; color: var(--accent); text-decoration: none; }
+.links a::before { content: "[ "; color: var(--muted); font-weight: 400; }
+.links a::after { content: " ]"; color: var(--muted); font-weight: 400; }
+@media (hover: hover) { .links a:hover { text-decoration: underline; text-underline-offset: 3px; } }
+.links .note { padding-block: 8px; color: var(--muted); font-weight: 400; }
+.links .note::before { content: "# "; }
+
+/* spotlight card */
+.card.feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); grid-template-areas: "gallery body" "facts facts"; }
+.gallery { grid-area: gallery; display: flex; flex-direction: column; justify-content: center; min-width: 0; border-right: 1px solid var(--line); background: var(--bg-3); }
+.stage { position: relative; aspect-ratio: 20 / 9; overflow: hidden; background: #0c0a0d; }
+.stage img { width: 100%; height: 100%; object-fit: cover; }
+.caption { padding: 10px 14px 0; font-size: 0.75rem; color: var(--muted); }
+.caption::before { content: "# "; }
+.thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; padding: 10px 14px 14px; }
+.thumb { padding: 0; border: 2px solid transparent; border-radius: 3px; background: none; overflow: hidden; opacity: 0.6; cursor: pointer; }
+@media (hover: hover) { .thumb:hover { opacity: 1; } }
+.thumb[aria-current="true"] { border-color: var(--accent); opacity: 1; }
+.thumb img { width: 100%; aspect-ratio: 20 / 9; object-fit: cover; }
+.feature .body { grid-area: body; padding: clamp(18px, 3vw, 28px); gap: 12px; }
+.feature h3 { font-size: clamp(1.35rem, 2.6vw, 1.75rem); letter-spacing: -0.02em; }
+.feature .tagline { font-size: 0.875rem; }
+.feature .desc { font-size: 0.8125rem; }
+.facts { grid-area: facts; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.facts li { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px; border-left: 1px solid var(--line); }
+.facts li:first-child { border-left: 0; }
+.facts b { font-size: 1.4rem; line-height: 1; font-weight: 700; letter-spacing: -0.03em; color: var(--green); }
+.facts span { font-size: 0.75rem; line-height: 1.5; color: var(--fg-2); }
+@media (max-width: 900px) {
+  .card.feature { grid-template-columns: minmax(0, 1fr); grid-template-areas: "gallery" "body" "facts"; }
+  .gallery { border-right: 0; border-bottom: 1px solid var(--line); }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .facts li { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 10px 18px; border-left: 0; border-top: 1px solid var(--line); }
+  .facts li:first-child { border-top: 0; }
+  .facts b { font-size: 1.05rem; }
+}
+@media (max-width: 560px) { .thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* about */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); }
+@media (max-width: 860px) { .about-grid { grid-template-columns: minmax(0, 1fr); } }
+.prose p { margin: 0 0 1.1em; max-width: 64ch; color: var(--fg-2); }
+.prose p:nth-child(-n + 2) { color: var(--fg); }
+.prose a { color: var(--accent); text-underline-offset: 3px; }
+.likes { display: grid; gap: 12px; align-content: start; }
+.like { display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg-2); text-decoration: none; transition: border-color 0.15s; }
+@media (hover: hover) { .like:hover { border-color: var(--accent); } }
+.like b { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; font-size: 0.9375rem; color: var(--cyan); }
+.like small { font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+.like p { margin: 6px 0 0; font-size: 0.8125rem; color: var(--fg-2); }
+
+/* tools */
+.stack { border-top: 1px solid var(--line); }
+.grp { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 12px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+@media (max-width: 640px) { .grp { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
+.grp h3 { margin: 0; padding-top: 4px; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0; color: var(--cyan); }
+.grp h3::after { content: ":"; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 2px; font-size: 0.75rem; line-height: 1.4; }
+
+/* contact + footer */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px 48px; padding: clamp(22px, 5vw, 40px); border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg-2); }
+@media (max-width: 720px) { .contact { grid-template-columns: minmax(0, 1fr); } }
+.contact .copy, .contact .actions { display: grid; justify-items: start; gap: 14px; }
+.contact p { margin: 0; max-width: 56ch; color: var(--fg-2); }
+.mail { display: flex; align-items: center; gap: 12px; font-size: 0.875rem; }
+.mail a { min-width: 0; padding-block: 10px; color: var(--accent); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.mail .btn { flex: none; min-width: 4.75rem; justify-content: center; padding: 11px 12px; }
+@media (max-width: 299px) { .mail { flex-wrap: wrap; } }
+.footer { padding-block: 24px 36px; border-top: 1px solid var(--line); font-size: 0.75rem; color: var(--muted); }
+.footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; }
+.footer a { padding: 8px 4px; color: var(--fg-2); }
+
+@media (max-width: 640px) {
+  .tagline, .desc, .feature .desc { font-size: 0.875rem; }
+  .meta { font-size: 0.8125rem; }
+}
+@media (pointer: coarse) {
+  a, button { -webkit-tap-highlight-color: color-mix(in srgb, var(--accent) 28%, transparent); }
+  .nav a { padding-block: 11px; }
+  .theme { width: 44px; height: 44px; }
+  .chip { padding: 15px 13px; }
+  .links a, .links .note { padding-block: 12px; }
+  .footer a { padding: 12px 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+  .caret { animation: none; }
+}
+
+/* language button, visually hidden text */
+.lang { font: 700 0.75rem/1 var(--font); letter-spacing: 0.02em; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* the warning line on a card, and the play button */
+.warn { margin: 0; font-size: 0.8125rem; line-height: 1.6; color: var(--fg-2); }
+.warn b { margin-right: 0.6ch; color: var(--amber); font-weight: 700; }
+.warn a { color: var(--accent); text-underline-offset: 3px; }
+.links a.play { margin-right: 6px; padding: 10px 16px; border-radius: 3px; background: var(--accent); color: var(--on-accent); }
+.links a.play::before, .links a.play::after { content: none; }
+@media (hover: hover) { .links a.play:hover { filter: brightness(1.08); text-decoration: none; } }
+
+/* timeline, drawn like `git log` */
+.log, .log ol { margin: 0; padding: 0; list-style: none; }
+.yr { margin: 22px 0 10px; font-size: 0.8125rem; color: var(--muted); }
+.yr::before { content: "# "; }
+.entry, .now { display: grid; grid-template-columns: 5.4rem minmax(0, 1fr); gap: 0 18px; }
+.entry time, .now time { padding-top: 1px; font-size: 0.8125rem; color: var(--cyan); }
+.what { position: relative; min-width: 0; padding: 0 0 20px 22px; border-left: 1px solid var(--line-2); }
+.what::before { content: "*"; position: absolute; top: -1px; left: -0.6ch; width: 1.2ch; background: var(--bg); color: var(--accent); font-weight: 700; line-height: 1.5; text-align: center; }
+.log-link { margin-right: 10px; color: var(--fg); font-weight: 700; text-underline-offset: 3px; }
+.what .kinds { display: inline-flex; font-size: 0.75rem; }
+.what-t { margin: 2px 0 0; font-size: 0.8125rem; color: var(--fg-2); }
+.what-t a { color: var(--accent); text-underline-offset: 3px; }
+.upd { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); }
+.now .what { padding-bottom: 8px; }
+.now .what-t { margin: 0; color: var(--fg); }
+@media (max-width: 480px) { .entry, .now { grid-template-columns: 4.6rem minmax(0, 1fr); gap: 0 12px; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#projects" data-i18n="skip">Skip to projects</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="aloualou56, back to top" data-i18n-attr="aria-label:brand_aria"><span class="user">aloualou56</span><span class="at">@</span><span class="user">site</span><span class="sep">:</span><span class="path">~</span><i class="ps">$</i><i class="caret sm" aria-hidden="true"></i></a>
+    <nav class="nav" aria-label="Sections" data-i18n-attr="aria-label:nav_aria">
+      <a href="#projects" data-i18n="nav_projects">projects</a>
+      <a href="#about" data-i18n="nav_about">about</a>
+      <a href="#timeline" data-i18n="nav_log">timeline</a>
+      <a href="#contact" data-i18n="nav_contact">contact</a>
+    </nav>
+    <button class="theme lang" id="lang" type="button" aria-label="Switch language to Greek (Ελληνικά)" title="Ελληνικά">ΕΛ</button>
+    <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme" data-i18n-attr="aria-label:theme_aria">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow">
+        <p class="comment" data-i18n="eyebrow_1">second-year student developer</p>
+        <p class="comment" data-i18n="eyebrow_2">currently at <span lang="el">ΔΙΠΑΕ Σερρών</span> (IHU)</p>
+        <p class="comment" data-i18n="eyebrow_3">teacher, <a href="https://panserraikos.roboticsports.org/" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a></p>
+      </div>
+      <h1 id="headline" aria-label="I build games, web apps, hardware gadgets, Android apps, Minecraft bots and automation tools"><span id="line" aria-hidden="true"><span id="prefix">I build</span><span id="typed"><noscript> games, web apps and hardware gadgets</noscript></span><i class="caret"></i></span></h1>
+      <div class="hero-cols">
+        <div>
+          <p class="lead" data-i18n="lead">Hi, I'm Elias. This page collects the <span data-count="projects">15</span> projects I've made so far, from a bullet-hell roguelike for Android to a Raspberry Pi e-paper display.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects" data-i18n="cta_projects">see projects ↓</a>
+            <a class="btn" href="https://github.com/aloualou56" target="_blank" rel="noopener">github ↗</a>
+          </div>
+        </div>
+        <aside class="term" aria-label="At a glance" data-i18n-attr="aria-label:glance_aria">
+          <div class="term-bar"><span>elias@aloualou56: ~</span><span><span data-count="projects">15</span> projects</span></div>
+          <div class="term-body">
+            <p class="cmd"><i class="ps">$</i> cat profile.txt</p>
+            <dl>
+              <div class="row"><dt data-i18n="k_role">role</dt><dd data-i18n="v_role">Student developer, second year</dd></div>
+              <div class="row"><dt data-i18n="k_school">school</dt><dd data-i18n="v_school"><span lang="el">ΔΙΠΑΕ Σερρών</span>, International Hellenic University (IHU)</dd></div>
+              <div class="row"><dt data-i18n="k_dept">department</dt><dd data-i18n="v_dept"><a href="https://www.ict.ihu.gr/en/" target="_blank" rel="noopener">Computer, Informatics and Telecommunications Engineering</a></dd></div>
+              <div class="row"><dt data-i18n="k_teach">teaching</dt><dd data-i18n="v_teach"><a href="https://panserraikos.roboticsports.org/" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>, Serres: the younger generations</dd></div>
+              <div class="row"><dt data-i18n="k_builds">builds</dt><dd data-i18n="v_builds">Games, web apps, hardware gadgets</dd></div>
+              <div class="row"><dt data-i18n="k_langs">languages</dt><dd>Python, Kotlin, Java, C++, C, JavaScript</dd></div>
+              <div class="row"><dt data-i18n="k_runs">runs-on</dt><dd data-i18n="v_runs">Android, browsers, Windows, ESP32, Raspberry Pi</dd></div>
+              <div class="row"><dt data-i18n="k_code">code</dt><dd data-i18n="v_code"><span data-count="public">8</span> public, <span data-count="private">7</span> private</dd></div>
+              <div class="row"><dt data-i18n="k_latest">latest</dt><dd data-i18n="v_latest"><a href="#nebula">Nebula Requiem</a>, a native Android game</dd></div>
+            </dl>
+            <p class="cmd"><i class="ps">$</i><i class="caret sm" aria-hidden="true"></i></p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title" style="padding-top:clamp(12px,2vw,24px)">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="projects-title" aria-label="Projects" data-i18n-attr="aria-label:h_projects"><span aria-hidden="true"><i class="ps">$</i> ls <span class="path">~/projects</span></span></h2>
+        <p class="sub comment" data-i18n="projects_sub">every card says what it runs on · a lock means the repository is private</p>
+        <div class="filters" id="filters" role="group" aria-label="Filter projects by kind" data-i18n-attr="aria-label:filters_aria"></div>
+      </div>
+      <p class="status" id="status" aria-live="polite"></p>
+      <div class="grid" id="grid">
+        <noscript><p>This list needs JavaScript. All public projects are on <a href="https://github.com/aloualou56">github.com/aloualou56</a>.</p></noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="about-title" aria-label="About me" data-i18n-attr="aria-label:h_about"><span aria-hidden="true"><i class="ps">$</i> cat <span class="path">about.md</span></span></h2></div>
+      <div class="about-grid">
+        <div class="prose">
+          <p data-i18n="about_1">I'm Elias, a second-year student at the International Hellenic University (IHU) in Serres, <span lang="el">ΔΙΠΑΕ Σερρών</span>. My department is <a href="https://www.ict.ihu.gr/en/" target="_blank" rel="noopener">Computer, Informatics and Telecommunications Engineering</a> (<span lang="el">Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών</span>), and I enjoy programming in my free time.</p>
+          <p data-i18n="about_2">I'm also a teacher in the <a href="https://panserraikos.roboticsports.org/" target="_blank" rel="noopener" hreflang="el">Robotic Sports department of M.G.S. Panserraikos</a> in Serres (<span lang="el">Τμήμα Αθλητικής Ρομποτικής</span>), which describes itself as the first official athletic robotics department in Greece. There I teach the younger generations.</p>
+          <p data-i18n="about_3">Most of what's on this page started as something I wanted to use: a game to play on my phone, a booking system for small businesses, a little screen that shows the time and the weather.</p>
+          <p data-i18n="about_4">I work in Python, Kotlin, Java, C++ and JavaScript, and I pick whichever fits the job. A few projects exist twice on purpose. JavaGame was rebuilt in C++ so it runs on Windows and Android, and Nebula Requiem began as a single HTML file before I rewrote it natively in Kotlin.</p>
+          <p data-i18n="about_5">I write READMEs in English, and some in Greek as well.</p>
+        </div>
+        <div class="likes" id="likes">
+          <a class="like" href="#projects" data-filter="games"><b>./games <small data-kind-count="games"></small></b><p data-i18n="like_games">Bullet patterns, collision, procedural worlds and the maths behind them.</p></a>
+          <a class="like" href="#projects" data-filter="web"><b>./web-apps <small data-kind-count="web"></small></b><p data-i18n="like_web">Booking and school management systems, both built with Django.</p></a>
+          <a class="like" href="#projects" data-filter="hardware"><b>./hardware <small data-kind-count="hardware"></small></b><p data-i18n="like_hw">E-paper displays, an ESP32 monitor and an NFC reader app.</p></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="timeline" aria-labelledby="timeline-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="timeline-title" aria-label="Timeline" data-i18n-attr="aria-label:h_log"><span aria-hidden="true"><i class="ps">$</i> git log <span class="flag">--oneline</span></span></h2>
+        <p class="sub comment" data-i18n="log_sub">dates are the first and latest commit of each repository on GitHub · some projects were started before they were uploaded</p>
+      </div>
+      <ol class="log" id="log"></ol>
+    </div>
+  </section>
+
+  <section class="section" id="stack" aria-labelledby="stack-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="stack-title" aria-label="What I use" data-i18n-attr="aria-label:h_tools"><span aria-hidden="true"><i class="ps">$</i> cat <span class="path">tools.txt</span></span></h2></div>
+      <div class="stack" id="stack-list"></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact">
+        <div class="copy">
+          <h2 id="contact-title" aria-label="Say hello" data-i18n-attr="aria-label:h_contact"><span aria-hidden="true"><i class="ps">$</i> hello <span class="flag">--github</span></span></h2>
+          <p data-i18n="contact_text">My public projects are on GitHub. If one of them interests you, open an issue in its repository or start from my profile.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/aloualou56" target="_blank" rel="noopener">github.com/aloualou56 ↗</a>
+          <div class="mail" id="mail" hidden>
+            <a id="mail-text" href="#"></a>
+            <button class="btn" id="mail-copy" type="button" aria-label="Copy email address" title="Copy email address" data-i18n-attr="aria-label:copy_aria;title:copy_aria">copy</button>
+            <span class="sr-only" id="mail-status" role="status"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span data-i18n="footer_text">© <span id="year">2026</span> Elias · plain HTML, CSS and JavaScript</span>
+    <a href="#top" data-i18n="footer_top">top ↑</a>
+  </div>
+</footer>
+
+<script>
+/* ============================================================================
+   EDIT HERE. Add, remove or reorder projects in PROJECTS; the cards, the filters,
+   the timeline and the numbers in the hero are all built from it.
+   - Texts that have two languages are written L("English", "Ελληνικά").
+   - visibility: "public" shows a source link, "private" shows a lock and no link.
+   - cover: either image {src, alt} or flow {mode: "chain" | "set", label, items}.
+   - started / updated: "YYYY-MM", the first and latest commit of the repository.
+   - play: a page in this site that runs the project in the browser.
+   ========================================================================== */
+const CONTACT_EMAIL = "hakriti3@gmail.com"; // shown in the Contact section with a copy button; set to "" to hide it
+
+const L = (en, el) => ({ en, el });
+let lang = "en";
+const T = (v) => (v && typeof v === "object" && !Array.isArray(v) ? (v[lang] ?? v.en) : v);
+
+const TEAM_URL = "https://panserraikos.roboticsports.org/";
+const DEPT_URL_EN = "https://www.ict.ihu.gr/en/";
+const DEPT_URL_EL = "https://www.ict.ihu.gr/";
+
+// The words the headline types, in order. Keep each word under 18 characters so the line never wraps.
+const HEADLINE = {
+  en: { prefix: "I build", words: ["games", "web apps", "hardware gadgets", "Android apps", "Minecraft bots", "automation tools"], full: " games, web apps and hardware gadgets", and: " and " },
+  el: { prefix: "Φτιάχνω", words: ["παιχνίδια", "web εφαρμογές", "συσκευές hardware", "εφαρμογές Android", "Minecraft bots", "αυτοματισμούς"], full: " παιχνίδια, web εφαρμογές και συσκευές hardware", and: " και " }
+};
+
+const KINDS = {
+  games: L("games", "παιχνίδια"), web: L("web", "web"), android: L("android", "android"),
+  hardware: L("hardware", "hardware"), automation: L("automation", "αυτοματισμοί"), coursework: L("coursework", "εργασίες")
+};
+
+const PROJECTS = [
+  {
+    id: "nebula", featured: true, title: "Nebula Requiem",
+    kinds: ["games", "android"], visibility: "public",
+    repo: "https://github.com/aloualou56/nebula_requiem",
+    download: "https://github.com/aloualou56/nebula_requiem/releases/latest",
+    started: "2026-10", updated: "2026-10",
+    tagline: L("A cosmic bullet-hell roguelike for Android, written in Kotlin.",
+               "Ένα διαστημικό roguelike bullet-hell για Android, γραμμένο σε Kotlin."),
+    desc: L("Thread a tiny hitbox through mathematical bullet storms, graze shots to charge Overdrive, and draft upgrades as you level. Fly the story through ten sectors and ten guardians, or go endless. Every pixel, sound effect and note of music is generated on the device by native code.",
+            "Περάστε ένα μικροσκοπικό hitbox μέσα από καταιγίδες σφαιρών με μαθηματικά σχέδια, κάντε graze για να φορτίσετε το Overdrive και διαλέξτε αναβαθμίσεις καθώς ανεβαίνετε επίπεδο. Παίξτε την ιστορία σε δέκα τομείς με δέκα guardians ή πηγαίνετε στο endless. Κάθε pixel, ήχος και νότα μουσικής παράγεται στη συσκευή από native κώδικα."),
+    facts: [
+      ["10", L("guardians, each with its own bullet maths", "guardians, ο καθένας με δικά του μαθηματικά σχέδια σφαιρών")],
+      ["4", L("difficulties, from Easy to Maniac", "επίπεδα δυσκολίας, από Easy ως Maniac")],
+      ["1/120 s", L("fixed simulation step, smooth on 60 to 240 Hz screens", "σταθερό βήμα προσομοίωσης, ομαλό σε οθόνες 60 έως 240 Hz")],
+      ["18k", L("lines of Kotlin, with 80+ automated tests", "γραμμές Kotlin, με 80+ αυτοματοποιημένα τεστ")],
+      ["0", L("network permissions, so it works fully offline", "δικαιώματα δικτύου, άρα δουλεύει πλήρως offline")]
+    ],
+    stack: "Kotlin, Android", runsOn: L("Android 13 or newer", "Android 13 ή νεότερο"),
+    gallery: [
+      { src: "assets/nebula/gameplay.jpg", alt: L("Gameplay on a touch screen: a small ship, a score and combo, and Nova and Dash buttons", "Παιχνίδι σε οθόνη αφής: ένα μικρό σκάφος, σκορ και combo, και κουμπιά Nova και Dash"), cap: L("gameplay on a touch screen", "παιχνίδι σε οθόνη αφής") },
+      { src: "assets/nebula/boss.jpg", alt: L("The Fractal Seraph guardian surrounded by a field of purple and gold bullets", "Ο guardian Fractal Seraph μέσα σε ένα πεδίο από μωβ και χρυσές σφαίρες"), cap: L("guardian fight: Fractal Seraph", "μάχη με guardian: Fractal Seraph") },
+      { src: "assets/nebula/overdrive.jpg", alt: L("The Overdrive banner over a busy bullet field", "Το banner Overdrive πάνω από ένα γεμάτο πεδίο σφαιρών"), cap: L("overdrive: fire rate doubled", "overdrive: διπλάσιος ρυθμός πυρός") },
+      { src: "assets/nebula/graft.jpg", alt: L("A choice of three upgrades called grafts", "Επιλογή ανάμεσα σε τρεις αναβαθμίσεις που λέγονται grafts"), cap: L("choosing a graft after levelling up", "επιλογή graft μετά από level up") },
+      { src: "assets/nebula/hangar.jpg", alt: L("The Hangar screen with ship stats and refit modules", "Η οθόνη Hangar με στατιστικά σκάφους και modules αναβάθμισης"), cap: L("the hangar: permanent refits", "το hangar: μόνιμες αναβαθμίσεις") },
+      { src: "assets/nebula/title.jpg", alt: L("The Nebula Requiem title screen with Launch run, Hangar, Flight manual and Settings", "Η αρχική οθόνη του Nebula Requiem με τα Launch run, Hangar, Flight manual και Settings"), cap: L("title screen", "αρχική οθόνη") }
+    ]
+  },
+  {
+    id: "reserva", title: "Reserva",
+    kinds: ["web", "android"], visibility: "public",
+    repo: "https://github.com/aloualou56/online-booking-system",
+    started: "2026-02", updated: "2026-08",
+    tagline: L("A multi-tenant booking platform for service businesses, built with Django.",
+               "Πλατφόρμα κρατήσεων (multi-tenant) για επιχειρήσεις υπηρεσιών, φτιαγμένη με Django."),
+    desc: L("Each business gets public booking pages and an embeddable widget. Customers book with an account or as guests, deposits go through Stripe, and Twilio sends SMS confirmations and reminders. It also has staff schedules, verified reviews, dispute reports and an Android app.",
+            "Κάθε επιχείρηση έχει δημόσιες σελίδες κρατήσεων και ενσωματώσιμο widget. Οι πελάτες κλείνουν ραντεβού με λογαριασμό ή ως επισκέπτες, οι προκαταβολές περνούν από το Stripe και το Twilio στέλνει SMS επιβεβαίωσης και υπενθύμισης. Περιλαμβάνει επίσης προγράμματα προσωπικού, επαληθευμένες κριτικές, αναφορές διαφορών και εφαρμογή Android."),
+    stack: "Django, Stripe, Twilio", runsOn: L("Web, Android", "Web, Android"),
+    credit: { label: "Giormall", url: "https://github.com/Giormall" },
+    flow: { mode: "set", label: L("django apps", "εφαρμογές django"), items: ["accounts", "businesses", "bookings", "payments", "notifications", "reviews", "reports"] }
+  },
+  {
+    id: "epaper", title: L("Wall e-paper dashboard", "Πίνακας e-paper στον τοίχο"),
+    kinds: ["hardware"], visibility: "public",
+    repo: "https://github.com/aloualou56/e-Paper-display-program",
+    started: "2024-06", updated: "2025-11",
+    tagline: L("A Raspberry Pi, a small e-paper display and the time at a glance.",
+               "Ένα Raspberry Pi, μια μικρή οθόνη e-paper και η ώρα με μια ματιά."),
+    desc: L("Big clock digits in the middle, CPU temperature, CPU and RAM use along the top, and the local weather along the bottom. The display refreshes partially every second and fully every 12 hours, which keeps the image clean.",
+            "Μεγάλα ψηφία ρολογιού στη μέση, θερμοκρασία και χρήση CPU και RAM στο πάνω μέρος και ο τοπικός καιρός στο κάτω. Η οθόνη ανανεώνεται μερικώς κάθε δευτερόλεπτο και πλήρως κάθε 12 ώρες, ώστε η εικόνα να μένει καθαρή."),
+    stack: "Python, Pillow, OpenWeatherMap", runsOn: L("Raspberry Pi with a Waveshare e-paper display", "Raspberry Pi με οθόνη e-paper Waveshare"),
+    image: { src: "assets/epaper.jpg", alt: L("The e-paper display in a green case showing CPU temperature, CPU and RAM use, the time 21:12 and the weather, with labels added to the photo", "Η οθόνη e-paper σε πράσινη θήκη, με θερμοκρασία CPU, χρήση CPU και RAM, την ώρα 21:12 και τον καιρό, με ετικέτες πάνω στη φωτογραφία") }
+  },
+  {
+    id: "esp32", title: "ESP32 PC Monitor",
+    kinds: ["hardware"], visibility: "private",
+    started: "2025-12", updated: "2025-12",
+    tagline: L("An e-paper screen that shows my PC's load and the weather.",
+               "Μια οθόνη e-paper που δείχνει το φορτίο του υπολογιστή μου και τον καιρό."),
+    desc: L("A Python collector on the PC reports CPU, GPU, RAM and disk figures over the local network. The ESP32 finds it by UDP broadcast, draws the numbers on a Waveshare e-paper display and serves its own web dashboard. Wi-Fi and weather settings live in flash and can be changed over Bluetooth or the browser.",
+            "Ένας collector σε Python στον υπολογιστή αναφέρει τιμές CPU, GPU, RAM και δίσκου μέσω του τοπικού δικτύου. Το ESP32 τον βρίσκει με UDP broadcast, σχεδιάζει τους αριθμούς σε οθόνη e-paper Waveshare και σερβίρει δικό του web dashboard. Οι ρυθμίσεις Wi-Fi και καιρού αποθηκεύονται στη flash και αλλάζουν μέσω Bluetooth ή του browser."),
+    stack: "C++ (Arduino), PlatformIO, Python, Flask", runsOn: L("ESP32 and a Windows PC", "ESP32 και υπολογιστής Windows"),
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: ["PC · Flask + psutil", L("UDP discovery", "εντοπισμός UDP"), "ESP32", L("e-paper display", "οθόνη e-paper")] }
+  },
+  {
+    id: "javagame", title: "JavaGame",
+    kinds: ["games"], visibility: "public",
+    repo: "https://github.com/aloualou56/JavaGame",
+    started: "2024-01", updated: "2026-08",
+    tagline: L("A 2D tile-based adventure, written from scratch to learn Java.",
+               "Ένα 2D adventure με πλακίδια (tiles), γραμμένο από το μηδέν για να μάθω Java."),
+    desc: L("Choose the boy or the girl, explore terrain generated from noise at runtime, pick up keys, open doors and fight slimes with knockback and a health bar. It has an inventory with stacking, wandering villagers and a scrolling camera.",
+            "Επιλέξτε το αγόρι ή το κορίτσι, εξερευνήστε έδαφος που παράγεται από θόρυβο κατά την εκτέλεση, μαζέψτε κλειδιά, ανοίξτε πόρτες και πολεμήστε slimes με knockback και μπάρα ζωής. Έχει inventory με στοίβες, περιπλανώμενους χωρικούς και κάμερα που ακολουθεί τον παίκτη."),
+    stack: "Java, Java 2D", runsOn: L("Desktop, any JVM", "Desktop, οποιοδήποτε JVM"),
+    image: { src: "assets/javagame.png", alt: L("The player character standing next to a bush on a green field", "Ο χαρακτήρας δίπλα σε έναν θάμνο σε ένα πράσινο λιβάδι") }
+  },
+  {
+    id: "cpp-port", title: L("JavaGame in C++", "JavaGame σε C++"),
+    kinds: ["games", "android"], visibility: "public",
+    repo: "https://github.com/aloualou56/CPP_version_of_JavaGame",
+    started: "2024-10", updated: "2026-10",
+    tagline: L("The same game rebuilt in C++17 on SDL3, for Windows and Android.",
+               "Το ίδιο παιχνίδι ξαναχτισμένο σε C++17 με SDL3, για Windows και Android."),
+    desc: L("The port adds touch controls: a virtual joystick on the left half of the screen and attack on the right. It keeps the 50×50 tile world, uses pixel-perfect collision, and sorts characters and objects by their feet so they pass in front of and behind each other correctly.",
+            "Η μεταφορά προσθέτει χειρισμό αφής: εικονικό joystick στο αριστερό μισό της οθόνης και επίθεση στο δεξί. Κρατά τον κόσμο των 50×50 πλακιδίων, χρησιμοποιεί pixel-perfect collision και ταξινομεί χαρακτήρες και αντικείμενα με βάση τα «πόδια» τους, ώστε να περνούν σωστά μπροστά και πίσω το ένα από το άλλο."),
+    stack: "C++17, SDL3", runsOn: L("Windows, Android", "Windows, Android"),
+    flow: { mode: "chain", label: L("the port", "η μεταφορά"), items: ["JavaGame (Java)", "C++17 + SDL3", "Windows + Android"] }
+  },
+  {
+    id: "school", title: "Web-Management-School",
+    kinds: ["web"], visibility: "public",
+    repo: "https://github.com/aloualou56/Web-Management-School",
+    demo: "https://web-management-school.onrender.com",
+    started: "2025-11", updated: "2025-11",
+    tagline: L("Students, guardians, classes, attendance and payments in one Django app.",
+               "Μαθητές, κηδεμόνες, τμήματα, παρουσίες και πληρωμές σε μία εφαρμογή Django."),
+    desc: L("Mark attendance by hand or by scanning a student's QR code, see presence statistics per student and manage payment plans. Guardians pick their address on an OpenStreetMap map, and GitHub Actions triggers the scheduled attendance tasks on the hosted app.",
+            "Καταχωρήστε παρουσίες με το χέρι ή σκανάροντας το QR code του μαθητή, δείτε στατιστικά παρουσίας ανά μαθητή και διαχειριστείτε προγράμματα πληρωμών. Οι κηδεμόνες επιλέγουν τη διεύθυνσή τους σε χάρτη OpenStreetMap και το GitHub Actions ενεργοποιεί τις προγραμματισμένες εργασίες παρουσιών στην hosted εφαρμογή."),
+    stack: "Django, QR codes, GitHub Actions", runsOn: L("Web, hosted on Render", "Web, hosted στο Render"),
+    flow: { mode: "set", label: L("data it manages", "δεδομένα που διαχειρίζεται"), items: [L("Students", "Μαθητές"), L("Guardians", "Κηδεμόνες"), L("Classes", "Τμήματα"), L("Attendance", "Παρουσίες"), L("Payment plans", "Προγράμματα πληρωμών")] }
+  },
+  {
+    id: "aloubot", title: "alouBOT",
+    kinds: ["automation"], visibility: "public",
+    repo: "https://github.com/aloualou56/alouBOT",
+    started: "2021-11", updated: "2025-12",
+    tagline: L("A Minecraft bot that follows, fights, eats and digs tunnels.",
+               "Ένα Minecraft bot που ακολουθεί, μάχεται, τρώει και σκάβει σήραγγες."),
+    desc: L("Built on Mineflayer. It walks to coordinates, follows its owner, guards a spot against hostile mobs, equips weapons and armour, eats when hungry and digs 4×4 tunnels in any compass direction. It obeys chat commands from its owner only.",
+            "Χτισμένο πάνω στο Mineflayer. Περπατά σε συντεταγμένες, ακολουθεί τον ιδιοκτήτη του, φυλάει μια θέση από εχθρικά mobs, εξοπλίζεται με όπλα και πανοπλία, τρώει όταν πεινάει και σκάβει σήραγγες 4×4 προς κάθε κατεύθυνση. Υπακούει σε εντολές chat μόνο από τον ιδιοκτήτη του."),
+    stack: "Node.js, Mineflayer", runsOn: L("Node.js, joins a Minecraft Java server", "Node.js, συνδέεται σε Minecraft Java server"),
+    flow: { mode: "set", label: L("owner commands", "εντολές ιδιοκτήτη"), items: ["_follow", "_guard", "_attack hostiles", "_tunnel north 50", "_goto x y z", "_health"] }
+  },
+  {
+    id: "ocr", title: "Invoice OCR",
+    kinds: ["automation"], visibility: "private",
+    started: "2026-08", updated: "2026-08",
+    tagline: L("Reads scanned Greek invoices and delivery notes and writes spreadsheets.",
+               "Διαβάζει σκαναρισμένα ελληνικά τιμολόγια και δελτία αποστολής και γράφει λογιστικά φύλλα."),
+    desc: L("Phase one is a heavily tuned Tesseract pass. Phase two re-reads only the cells that came out blank or wrong, using Windows' built-in OCR as an independent second opinion. Results are scored against hand-verified answers. It ships as a Windows app with a Greek interface and a bundled Tesseract.",
+            "Η πρώτη φάση είναι ένα πολύ προσεγμένα ρυθμισμένο πέρασμα Tesseract. Η δεύτερη διαβάζει ξανά μόνο τα κελιά που βγήκαν κενά ή λάθος, με το ενσωματωμένο OCR των Windows ως ανεξάρτητη δεύτερη γνώμη. Τα αποτελέσματα βαθμολογούνται σε σχέση με χειροκίνητα επαληθευμένες απαντήσεις. Διανέμεται ως εφαρμογή Windows με ελληνική διεπαφή και ενσωματωμένο Tesseract."),
+    stack: "Python, Tesseract, Windows OCR, PyInstaller", runsOn: "Windows",
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: [L("PDF scans", "σαρωμένα PDF"), L("Tesseract pass", "πέρασμα Tesseract"), L("Windows OCR on gaps", "OCR των Windows στα κενά"), "CSV + XLSX"] }
+  },
+  {
+    id: "nebula-web", title: L("Nebula Requiem, web edition", "Nebula Requiem, έκδοση web"),
+    kinds: ["games", "android"], visibility: "private",
+    play: "play/nebula-web.html",
+    started: "2026-10", updated: "2026-10",
+    tagline: L("The original: the whole game in one HTML file.",
+               "Η αρχική έκδοση: ολόκληρο το παιχνίδι σε ένα αρχείο HTML."),
+    desc: L("Where Nebula Requiem started. About 430 KB of HTML, CSS and JavaScript with no image or audio files, plus a small Java app that runs it full screen and fully offline on Android. The native Kotlin version came after it.",
+            "Από εδώ ξεκίνησε το Nebula Requiem. Περίπου 430 KB HTML, CSS και JavaScript, χωρίς αρχεία εικόνας ή ήχου, μαζί με μια μικρή εφαρμογή Java που το τρέχει σε πλήρη οθόνη και εντελώς offline στο Android. Η native έκδοση Kotlin ήρθε μετά."),
+    warn: L(`this is the early prototype. Compared with the <a href="#nebula">native Kotlin version</a> it has 4 guardians instead of 10, no story ending, no difficulty levels and 8 fewer hostile types. Play with keyboard and mouse, a gamepad or touch; sound starts after your first click or key press.`,
+            `πρώιμο πρωτότυπο. Σε σχέση με τη <a href="#nebula">native έκδοση Kotlin</a> έχει 4 guardians αντί για 10, δεν έχει τέλος ιστορίας, δεν έχει επίπεδα δυσκολίας και έχει 8 λιγότερους τύπους εχθρών. Παίξτε με πληκτρολόγιο και ποντίκι, χειριστήριο ή αφή· ο ήχος ξεκινά μετά το πρώτο κλικ ή πάτημα πλήκτρου.`),
+    stack: "JavaScript, HTML, Java, WebView", runsOn: L("Browsers, Android 13 or newer", "Browsers, Android 13 ή νεότερο"),
+    image: { src: "assets/nebula-web.jpg", alt: L("The web edition of Nebula Requiem: a fight against the Helix Cantor guardian in a field of pink and gold bullets", "Η έκδοση web του Nebula Requiem: μάχη με τον guardian Helix Cantor σε ένα πεδίο από ροζ και χρυσές σφαίρες") }
+  },
+  {
+    id: "nfc", title: "NFC Watch Decoder",
+    kinds: ["android", "hardware"], visibility: "public",
+    repo: "https://github.com/aloualou56/NFC_watch_decrypt_app_IROC",
+    started: "2024-01", updated: "2024-01",
+    tagline: L("An Android app for the 25th IROC in Greece that reads a message from an NFC tag.",
+               "Εφαρμογή Android για το 25ο IROC στην Ελλάδα, που διαβάζει ένα μήνυμα από NFC tag."),
+    desc: L("Hold the phone to the tag and the app reads its NDEF record, decodes the Base64 text, decompresses it with zlib and shows the original message on screen.",
+            "Πλησιάστε το κινητό στο tag και η εφαρμογή διαβάζει την εγγραφή NDEF, αποκωδικοποιεί το κείμενο Base64, το αποσυμπιέζει με zlib και δείχνει το αρχικό μήνυμα στην οθόνη."),
+    stack: "Java, Android NFC API", runsOn: "Android",
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: ["NFC tag (NDEF)", L("Base64 decode", "αποκωδικοποίηση Base64"), L("zlib inflate", "αποσυμπίεση zlib"), L("Text on screen", "κείμενο στην οθόνη")] }
+  },
+  {
+    id: "upload", title: "UploadPSKE",
+    kinds: ["automation"], visibility: "private",
+    started: "2026-08", updated: "2026-08",
+    tagline: L("Enters invoices and delivery notes into a web portal from Excel.",
+               "Περνά τιμολόγια και δελτία αποστολής σε μια web πύλη από Excel."),
+    desc: L("A Tkinter app that drives a visible Chromium browser with Playwright. It registers suppliers, enters expense vouchers and links delivery notes from Excel manifests. Each run writes a full log and a failures-only log.",
+            "Μια εφαρμογή Tkinter που οδηγεί έναν ορατό browser Chromium με Playwright. Καταχωρεί προμηθευτές, εισάγει δαπάνες και συνδέει δελτία αποστολής από αρχεία Excel. Κάθε εκτέλεση γράφει πλήρες αρχείο καταγραφής και ξεχωριστό μόνο για τις αποτυχίες."),
+    stack: "Python, Playwright, Tkinter, openpyxl", runsOn: L("Windows 10 or newer", "Windows 10 ή νεότερο"),
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: [L("Excel manifests", "αρχεία Excel"), "Playwright + Chromium", L("Web portal", "web πύλη"), L("Run + failure logs", "logs εκτέλεσης και αποτυχιών")] }
+  },
+  {
+    id: "excel", title: "Excel Aggregator",
+    kinds: ["automation"], visibility: "private",
+    started: "2026-07", updated: "2026-07",
+    tagline: L("Collects monthly Excel reports and shows what changed between months.",
+               "Συγκεντρώνει μηνιαίες αναφορές Excel και δείχνει τι άλλαξε από μήνα σε μήνα."),
+    desc: L("It finds the monthly workbooks on a utility operator's website, pulls the pending-request sheets, compares each month with the next, highlights the rows that disappeared and writes everything into one master workbook with a summary sheet. A small window picks the year and months.",
+            "Βρίσκει τα μηνιαία workbooks στην ιστοσελίδα ενός φορέα παροχής, τραβά τα φύλλα με τα εκκρεμή αιτήματα, συγκρίνει κάθε μήνα με τον επόμενο, επισημαίνει τις γραμμές που εξαφανίστηκαν και γράφει τα πάντα σε ένα κύριο workbook με φύλλο σύνοψης. Ένα μικρό παράθυρο επιλέγει έτος και μήνες."),
+    stack: "Python, pandas, openpyxl, BeautifulSoup", runsOn: L("Windows, or any Python 3", "Windows, ή οποιοδήποτε Python 3"),
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: [L("Monthly .xlsx files", "μηνιαία αρχεία .xlsx"), L("Month-to-month diff", "σύγκριση μήνα με μήνα"), "master_report.xlsx"] }
+  },
+  {
+    id: "cpp-theory", title: L("C and C++ theory exercises", "Ασκήσεις θεωρίας C και C++"),
+    kinds: ["coursework"], visibility: "private",
+    started: "2024-10", updated: "2024-10",
+    tagline: L("Data-structures practice in C and C++.", "Εξάσκηση σε δομές δεδομένων με C και C++."),
+    desc: L("Linked lists, queues, binary trees, sorting algorithms, double pointers and inheritance, written while following a data-structures course.",
+            "Συνδεδεμένες λίστες, ουρές, δυαδικά δέντρα, αλγόριθμοι ταξινόμησης, διπλοί δείκτες και κληρονομικότητα, γραμμένα ενώ παρακολουθούσα ένα μάθημα δομών δεδομένων."),
+    stack: "C, C++", runsOn: L("Console", "Κονσόλα"),
+    flow: { mode: "set", label: L("topics", "θέματα"), items: [L("linked lists", "συνδεδεμένες λίστες"), L("queues", "ουρές"), L("binary trees", "δυαδικά δέντρα"), L("sorting", "ταξινόμηση"), L("pointers", "δείκτες"), L("inheritance", "κληρονομικότητα")] }
+  },
+  {
+    id: "pdp", title: "PDP 2022",
+    kinds: ["coursework"], visibility: "private",
+    started: "2024-10", updated: "2024-10",
+    tagline: L("A first-phase Java exercise from 2022.", "Άσκηση Java πρώτης φάσης, από το 2022."),
+    desc: L("A small Java program that reads a problem's input file and parses its first line.",
+            "Ένα μικρό πρόγραμμα Java που διαβάζει το αρχείο εισόδου ενός προβλήματος και αναλύει την πρώτη του γραμμή."),
+    stack: "Java", runsOn: L("Any JVM", "Οποιοδήποτε JVM"),
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: ["input.txt", L("Java parser", "parser Java")] }
+  }
+];
+const FEATURED = PROJECTS.find((p) => p.featured);
+
+const STACK = [
+  [L("languages", "γλώσσες"), ["Python", "Kotlin", "Java", "C++", "C", "JavaScript", "HTML + CSS"]],
+  [L("web", "web"), ["Django", "Flask", "Tailwind CSS"]],
+  [L("android-and-games", "android-και-παιχνίδια"), ["Android", "SDL3", "Java 2D", "WebView"]],
+  [L("hardware", "hardware"), ["ESP32", "Arduino + PlatformIO", "Raspberry Pi", "E-paper displays", "NFC"]],
+  [L("automation", "αυτοματισμοί"), ["Playwright", "Tesseract OCR", "Node.js", "Mineflayer", "pandas + openpyxl", "Tkinter", "PyInstaller"]],
+  [L("services-and-tooling", "υπηρεσίες-και-εργαλεία"), ["Git + GitHub Actions", "Stripe", "Twilio", "PostgreSQL + SQLite", "Render", "Vercel"]]
+];
+
+/* ============================== words used while building the page ============================== */
+const W = {
+  en: {
+    stack: "stack", runs: "runs-on", period: "period", builtWith: "built-with",
+    pub: "public", priv: "private", source: "source ↗", demo: "live demo ↗", apk: "download apk ↗", play: "play in browser ▶", privRepo: "private repository",
+    warning: "warning:", shots: (t) => `Screenshots of ${t}`, then: ", then ", sep: ", ",
+    all: "all", now: "now", updated: (d) => `updated ${d}`,
+    showingAll: (n) => `# showing all ${n} projects`, showing: (s, t, k) => `# showing ${s} of ${t} projects: ${k}`,
+    copied: "Copied", copyFail: "Press Ctrl+C to copy",
+    nowText: `second year at <span lang="el">ΔΙΠΑΕ Σερρών</span> (IHU) · teaching at <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`
+  },
+  el: {
+    stack: "τεχνολογίες", runs: "τρέχει-σε", period: "περίοδος", builtWith: "συνεργασία",
+    pub: "δημόσιο", priv: "ιδιωτικό", source: "κώδικας ↗", demo: "live demo ↗", apk: "λήψη apk ↗", play: "παίξτε στον browser ▶", privRepo: "ιδιωτικό repository",
+    warning: "προσοχή:", shots: (t) => `Στιγμιότυπα του ${t}`, then: ", μετά ", sep: ", ",
+    all: "όλα", now: "τώρα", updated: (d) => `ενημερώθηκε ${d}`,
+    showingAll: (n) => `# εμφανίζονται και τα ${n} projects`, showing: (s, t, k) => `# εμφανίζονται ${s} από ${t} projects: ${k}`,
+    copied: "Αντιγράφηκε", copyFail: "Πατήστε Ctrl+C για αντιγραφή",
+    nowText: `2ο έτος στο ΔΙΠΑΕ Σερρών (IHU) · διδασκαλία στο <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`
+  }
+};
+
+/* ============================== the Greek text of the static page ==============================
+   The English text lives in the HTML itself (so it also works without JavaScript). Each element
+   with data-i18n="key" gets EL[key] when the page is in Greek. Greek is written without
+   masculine or feminine forms (verbs like "σπουδάζω", "διδάσκω") so it fits any reader. */
+const EL = {
+  skip: "Μετάβαση στα projects",
+  brand_aria: "aloualou56, επιστροφή στην κορυφή",
+  nav_aria: "Ενότητες",
+  nav_projects: "έργα", nav_about: "σχετικά", nav_log: "χρονολόγιο", nav_contact: "επικοινωνία",
+  theme_aria: "Εναλλαγή μεταξύ φωτεινού και σκούρου θέματος",
+  eyebrow_1: "σπουδάζω και προγραμματίζω · 2ο έτος",
+  eyebrow_2: "αυτή τη στιγμή στο ΔΙΠΑΕ Σερρών (IHU)",
+  eyebrow_3: `διδάσκω: <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`,
+  lead: `Γεια σας, με λένε Elias. Εδώ θα βρείτε τα <span data-count="projects">15</span> projects που έχω φτιάξει μέχρι τώρα, από ένα roguelike bullet-hell για Android μέχρι μια οθόνη e-paper με Raspberry Pi.`,
+  cta_projects: "δείτε τα projects ↓",
+  glance_aria: "Με μια ματιά",
+  k_role: "ιδιότητα", v_role: "σπουδές και ανάπτυξη λογισμικού, 2ο έτος",
+  k_school: "πανεπιστήμιο", v_school: "ΔΙΠΑΕ Σερρών, Διεθνές Πανεπιστήμιο της Ελλάδος (IHU)",
+  k_dept: "τμήμα", v_dept: `<a href="${DEPT_URL_EL}" target="_blank" rel="noopener" hreflang="el">Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών</a>`,
+  k_teach: "διδασκαλία", v_teach: `<a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>, Σέρρες: η νέα γενιά`,
+  k_builds: "φτιάχνω", v_builds: "Παιχνίδια, web εφαρμογές, hardware gadgets",
+  k_langs: "γλώσσες",
+  k_runs: "τρέχει-σε", v_runs: "Android, browsers, Windows, ESP32, Raspberry Pi",
+  k_code: "κώδικας", v_code: `<span data-count="public">8</span> δημόσια, <span data-count="private">7</span> ιδιωτικά`,
+  k_latest: "τελευταίο", v_latest: `<a href="#nebula">Nebula Requiem</a>, native παιχνίδι για Android`,
+  h_projects: "Έργα",
+  projects_sub: "κάθε κάρτα λέει πού τρέχει το project · το λουκέτο σημαίνει ότι το repository είναι ιδιωτικό",
+  filters_aria: "Φιλτράρισμα των projects ανά είδος",
+  h_about: "Σχετικά με εμένα",
+  about_1: `Με λένε Elias και σπουδάζω στο 2ο έτος του Διεθνούς Πανεπιστημίου της Ελλάδος (ΔΙΠΑΕ) στις Σέρρες, στο <a href="${DEPT_URL_EL}" target="_blank" rel="noopener" hreflang="el">Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών</a>. Στον ελεύθερό μου χρόνο μου αρέσει να προγραμματίζω.`,
+  about_2: `Διδάσκω επίσης τη νέα γενιά στο <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Τμήμα Αθλητικής Ρομποτικής του Μ.Γ.Σ. Πανσερραϊκός</a> στις Σέρρες, το οποίο παρουσιάζεται ως το πρώτο επίσημο τμήμα αθλητικής ρομποτικής στην Ελλάδα.`,
+  about_3: "Τα περισσότερα από όσα βλέπετε εδώ ξεκίνησαν ως κάτι που ήθελα να χρησιμοποιήσω: ένα παιχνίδι για το κινητό μου, ένα σύστημα κρατήσεων για μικρές επιχειρήσεις, μια μικρή οθόνη που δείχνει την ώρα και τον καιρό.",
+  about_4: "Δουλεύω με Python, Kotlin, Java, C++ και JavaScript και διαλέγω ό,τι ταιριάζει στη δουλειά. Μερικά projects υπάρχουν σε δύο εκδόσεις επίτηδες: το JavaGame ξαναγράφτηκε σε C++ ώστε να τρέχει σε Windows και Android, και το Nebula Requiem ξεκίνησε ως ένα μόνο αρχείο HTML πριν το ξαναγράψω εξ ολοκλήρου σε Kotlin.",
+  about_5: "Γράφω τα README στα αγγλικά και μερικά και στα ελληνικά.",
+  like_games: "Μοτίβα σφαιρών, συγκρούσεις, procedural κόσμοι και τα μαθηματικά πίσω τους.",
+  like_web: "Συστήματα κρατήσεων και διαχείρισης σχολείου, και τα δύο φτιαγμένα με Django.",
+  like_hw: "Οθόνες e-paper, ένα ESP32 monitor και μια εφαρμογή ανάγνωσης NFC.",
+  h_log: "Χρονολόγιο",
+  log_sub: "οι ημερομηνίες είναι το πρώτο και το τελευταίο commit κάθε repository στο GitHub · μερικά projects ξεκίνησαν πριν ανέβουν",
+  h_tools: "Τι χρησιμοποιώ",
+  h_contact: "Πείτε γεια",
+  contact_text: "Τα δημόσια projects μου είναι στο GitHub. Αν κάποιο σας ενδιαφέρει, ανοίξτε ένα issue στο repository του ή ξεκινήστε από το προφίλ μου.",
+  copy_aria: "Αντιγραφή διεύθυνσης email",
+  footer_text: `© <span id="year">2026</span> Elias · απλό HTML, CSS και JavaScript`,
+  footer_top: "πάνω ↑",
+  meta_desc: "Elias: 2ο έτος στο ΔΙΠΑΕ Σερρών (Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών), διδασκαλία στο Τμήμα Αθλητικής Ρομποτικής του Πανσερραϊκού, παιχνίδια, web εφαρμογές και μικρές κατασκευές hardware. Projects, τεχνολογίες και επικοινωνία."
+};
+
+/* ============================== rendering ============================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const state = { filter: "all", thumb: 0 };
+
+const LOCK = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="currentColor"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+const CODE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4 2 8l4 4M10 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function kindsHtml(p) {
+  return '<span class="kinds">' + p.kinds.map((k) => `<span class="kind" style="--kc:var(--c-${k})">${esc(T(KINDS[k]))}</span>`).join("") + "</span>";
+}
+function visHtml(p) {
+  const w = W[lang];
+  return p.visibility === "public" ? `<span class="vis pub">${CODE}${w.pub}</span>` : `<span class="vis">${LOCK}${w.priv}</span>`;
+}
+function metaHtml(p) {
+  const w = W[lang];
+  const period = p.updated && p.updated !== p.started ? `${p.started} → ${p.updated}` : p.started;
+  const rows = [[w.stack, esc(p.stack)], [w.runs, esc(T(p.runsOn))], [w.period, esc(period)]];
+  if (p.credit) rows.push([w.builtWith, `<a href="${esc(p.credit.url)}" target="_blank" rel="noopener">${esc(p.credit.label)}</a>`]);
+  return '<dl class="meta">' + rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("") + "</dl>";
+}
+function warnHtml(p) {
+  return p.warn ? `<p class="warn"><b>${W[lang].warning}</b>${T(p.warn)}</p>` : "";
+}
+function linksHtml(p) {
+  const w = W[lang], out = [];
+  if (p.play) out.push(`<a class="play" href="${esc(p.play)}" target="_blank" rel="noopener">${w.play}</a>`);
+  if (p.download) out.push(`<a href="${esc(p.download)}" target="_blank" rel="noopener">${w.apk}</a>`);
+  if (p.repo) out.push(`<a href="${esc(p.repo)}" target="_blank" rel="noopener">${w.source}</a>`);
+  if (p.demo) out.push(`<a href="${esc(p.demo)}" target="_blank" rel="noopener">${w.demo}</a>`);
+  if (!p.repo) out.push(`<span class="note">${w.privRepo}</span>`);
+  return `<div class="links">${out.join("")}</div>`;
+}
+function coverHtml(p) {
+  if (p.image) {
+    return `<div class="cover"><img src="${esc(p.image.src)}" alt="${esc(T(p.image.alt))}" width="1000" height="625"></div>`;
+  }
+  const f = p.flow, w = W[lang];
+  const labels = f.items.map((n) => T(n));
+  const nodes = labels.map((n) => `<span class="node">${esc(n)}</span>`);
+  const ARROW = '<svg class="arrow" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0v8M1.6 5 5 8.4 8.4 5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const inner = f.mode === "chain" ? nodes.join(ARROW) : nodes.join("");
+  const spoken = labels.join(f.mode === "chain" ? w.then : w.sep);
+  return `<div class="cover"><div class="flow ${f.mode}" role="img" aria-label="${esc(T(f.label))}: ${esc(spoken)}"><span class="flow-label" aria-hidden="true">${esc(T(f.label))}</span>${inner}</div></div>`;
+}
+function cardHtml(p) {
+  return `<article class="card" id="${esc(p.id)}" data-kinds="${p.kinds.join(" ")}">
+    ${coverHtml(p)}
+    <div class="body">
+      <div class="topline">${kindsHtml(p)}${visHtml(p)}</div>
+      <h3>${esc(T(p.title))}</h3>
+      <p class="tagline">${esc(T(p.tagline))}</p>
+      <p class="desc">${esc(T(p.desc))}</p>
+      ${warnHtml(p)}
+      ${metaHtml(p)}
+      ${linksHtml(p)}
+    </div>
+  </article>`;
+}
+function featureHtml(p) {
+  const g = p.gallery, cur = g[state.thumb] || g[0], w = W[lang];
+  return `<article class="card feature" id="${esc(p.id)}" data-kinds="${p.kinds.join(" ")}">
+    <div class="gallery">
+      <div class="stage"><img id="stage-img" src="${esc(cur.src)}" alt="${esc(T(cur.alt))}" width="1200" height="540"></div>
+      <div class="caption" id="stage-cap">${esc(T(cur.cap))}</div>
+      <div class="thumbs" role="group" aria-label="${esc(w.shots(T(p.title)))}">
+        ${g.map((s, i) => `<button class="thumb" type="button" data-i="${i}" aria-label="${esc(T(s.cap))}" aria-current="${s === cur}"><img src="${esc(s.src)}" alt="" width="1200" height="540"></button>`).join("")}
+      </div>
+    </div>
+    <div class="body">
+      <div class="topline">${kindsHtml(p)}${visHtml(p)}</div>
+      <h3>${esc(T(p.title))}</h3>
+      <p class="tagline">${esc(T(p.tagline))}</p>
+      <p class="desc">${esc(T(p.desc))}</p>
+      ${linksHtml(p)}
+    </div>
+    <ul class="facts">${p.facts.map(([n, t]) => `<li><b>${esc(n)}</b><span>${esc(T(t))}</span></li>`).join("")}</ul>
+  </article>`;
+}
+
+function renderProjects() {
+  $("#grid").innerHTML = PROJECTS.map((p) => (p.featured ? featureHtml(p) : cardHtml(p))).join("");
+}
+
+function renderFilters() {
+  const kindCount = (k) => PROJECTS.filter((p) => p.kinds.includes(k)).length;
+  const order = ["all", ...Object.keys(KINDS)];
+  $("#filters").innerHTML = order.map((k) => {
+    const n = k === "all" ? PROJECTS.length : kindCount(k);
+    const flag = k === "all" ? W[lang].all : T(KINDS[k]);
+    return `<button class="chip" type="button" data-filter="${k}" aria-pressed="${k === state.filter}">--${esc(flag)} <small>${n}</small></button>`;
+  }).join("");
+}
+
+function renderStack() {
+  $("#stack-list").innerHTML = STACK.map(([g, items]) =>
+    `<div class="grp"><h3>${esc(T(g))}</h3><div class="tags">${items.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div>`).join("");
+}
+
+function renderLog() {
+  const w = W[lang];
+  const sorted = [...PROJECTS].sort((a, b) => b.started.localeCompare(a.started) || T(a.title).localeCompare(T(b.title)));
+  const years = [];
+  sorted.forEach((p) => {
+    const y = p.started.slice(0, 4);
+    let g = years.find((x) => x.y === y);
+    if (!g) years.push((g = { y, items: [] }));
+    g.items.push(p);
+  });
+  const now = `<li class="now"><time>${w.now}</time><div class="what"><p class="what-t">${w.nowText}</p></div></li>`;
+  const groups = years.map((g) => `<li class="yr-group"><p class="yr">${g.y}</p><ol>${g.items.map((p) => {
+    const upd = p.updated && p.updated > p.started ? `<p class="upd">${w.updated(p.updated)}</p>` : "";
+    return `<li class="entry"><time datetime="${p.started}">${p.started}</time><div class="what"><a class="log-link" href="#${esc(p.id)}">${esc(T(p.title))}</a>${kindsHtml(p)}<p class="what-t">${esc(T(p.tagline))}</p>${upd}</div></li>`;
+  }).join("")}</ol></li>`).join("");
+  $("#log").innerHTML = now + groups;
+}
+
+function updateCounts() {
+  const total = PROJECTS.length;
+  const pub = PROJECTS.filter((p) => p.visibility === "public").length;
+  $$('[data-count="projects"]').forEach((e) => (e.textContent = total));
+  $$('[data-count="public"]').forEach((e) => (e.textContent = pub));
+  $$('[data-count="private"]').forEach((e) => (e.textContent = total - pub));
+  $$("[data-kind-count]").forEach((e) => (e.textContent = PROJECTS.filter((p) => p.kinds.includes(e.dataset.kindCount)).length + " projects"));
+}
+
+function setFilter(k) {
+  state.filter = k;
+  const w = W[lang];
+  let shown = 0;
+  $$("#grid .card").forEach((c) => {
+    const ok = k === "all" || c.dataset.kinds.split(" ").includes(k);
+    c.hidden = !ok;
+    if (ok) shown++;
+  });
+  $$("#filters .chip").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === k)));
+  $("#status").textContent = k === "all" ? w.showingAll(shown) : w.showing(shown, PROJECTS.length, T(KINDS[k]));
+}
+
+/* ============================== language ============================== */
+const TEXT0 = new Map(), ATTR0 = new Map();
+const META_EN = $('meta[name="description"]').content;
+
+function captureEnglish() {
+  $$("[data-i18n]").forEach((el) => TEXT0.set(el, el.innerHTML));
+  $$("[data-i18n-attr]").forEach((el) => {
+    ATTR0.set(el, el.dataset.i18nAttr.split(";").map((pair) => { const [attr, key] = pair.split(":"); return { attr, key, en: el.getAttribute(attr) }; }));
+  });
+}
+function translateStatic() {
+  $$("[data-i18n]").forEach((el) => { el.innerHTML = lang === "el" ? (EL[el.dataset.i18n] ?? TEXT0.get(el)) : TEXT0.get(el); });
+  $$("[data-i18n-attr]").forEach((el) => ATTR0.get(el).forEach(({ attr, key, en }) => el.setAttribute(attr, lang === "el" ? (EL[key] ?? en) : en)));
+  $('meta[name="description"]').content = lang === "el" ? EL.meta_desc : META_EN;
+}
+function detectLang() {
+  const h = location.hash.slice(1).toLowerCase();
+  if (h === "el" || h === "en") return h;
+  try { const s = localStorage.getItem("lang"); if (s === "el" || s === "en") return s; } catch (e) {}
+  return (navigator.language || "en").toLowerCase().startsWith("el") ? "el" : "en";
+}
+function applyLang(l, { first = false, fromUser = false } = {}) {
+  lang = l;
+  document.documentElement.lang = l;
+  translateStatic();
+  const b = $("#lang");
+  b.textContent = l === "el" ? "EN" : "ΕΛ";
+  b.setAttribute("aria-label", l === "el" ? "Αλλαγή γλώσσας σε αγγλικά (English)" : "Switch language to Greek (Ελληνικά)");
+  b.title = l === "el" ? "English" : "Ελληνικά";
+  renderProjects();
+  renderFilters();
+  renderStack();
+  renderLog();
+  updateCounts();
+  setFilter(state.filter);
+  $("#year").textContent = new Date().getFullYear();
+  startHeadline({ intro: first });
+  if (fromUser) {
+    try { localStorage.setItem("lang", l); } catch (e) {}
+    try { history.replaceState(null, "", "#" + l); } catch (e) {}
+  }
+}
+
+/* ============================== headline ==============================
+   "I build..." → the dots are deleted one by one → a word is typed, held, deleted letter by
+   letter, and the next one follows. Reduced-motion visitors get the finished sentence instead. */
+let typerRun = 0;
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function setHeadlineStatics() {
+  const H = HEADLINE[lang];
+  $("#prefix").textContent = H.prefix;
+  const list = H.words.join(", ").replace(/, ([^,]*)$/, H.and + "$1");
+  $("#headline").setAttribute("aria-label", `${H.prefix} ${list}`);
+  const longest = Math.max(...H.words.map((w) => w.length));
+  document.documentElement.style.setProperty("--h1-chars", String(H.prefix.length + 1 + longest));
+}
+
+async function startHeadline({ intro }) {
+  const run = ++typerRun;
+  setHeadlineStatics();
+  const H = HEADLINE[lang];
+  const typed = $("#typed");
+  const line = $("#line");
+  line.classList.remove("is-typing");
+  $("#headline").classList.toggle("types", !reducedMotion);
+  if (reducedMotion) { typed.textContent = H.full; return; }
+  const CANCEL = {};
+  const wait = async (ms) => {
+    await new Promise((r) => setTimeout(r, ms));
+    while (document.hidden) await new Promise((r) => document.addEventListener("visibilitychange", r, { once: true }));
+    if (run !== typerRun) throw CANCEL;
+  };
+  const typing = (on) => line.classList.toggle("is-typing", on);
+  try {
+    if (intro) {
+      typed.textContent = "...";
+      await wait(1100);
+      typing(true);
+      for (let dots = 2; dots >= 0; dots--) { typed.textContent = ".".repeat(dots); await wait(340); }
+      typing(false);
+      await wait(450);
+    } else {
+      typed.textContent = "";
+      await wait(300);
+    }
+    for (let i = 0; ; i = (i + 1) % H.words.length) {
+      const word = H.words[i];
+      typing(true);
+      for (let n = 1; n <= word.length; n++) { typed.textContent = " " + word.slice(0, n); await wait(70 + Math.random() * 60); }
+      typing(false);
+      await wait(1700);
+      typing(true);
+      for (let n = word.length - 1; n >= 0; n--) { typed.textContent = " " + word.slice(0, n); await wait(40); }
+      typed.textContent = "";
+      typing(false);
+      await wait(380);
+    }
+  } catch (e) {
+    if (e !== CANCEL) throw e;
+  }
+}
+
+/* ============================== events, email, theme ============================== */
+function bindEvents() {
+  $("#filters").addEventListener("click", (e) => {
+    const b = e.target.closest(".chip");
+    if (b) setFilter(b.dataset.filter);
+  });
+  $$("#likes .like").forEach((a) => a.addEventListener("click", () => setFilter(a.dataset.filter)));
+  $("#log").addEventListener("click", (e) => { if (e.target.closest(".log-link")) setFilter("all"); });
+  $("#grid").addEventListener("click", (e) => {
+    const b = e.target.closest(".thumb");
+    if (!b) return;
+    state.thumb = Number(b.dataset.i);
+    const s = FEATURED.gallery[state.thumb];
+    const img = $("#stage-img");
+    img.src = s.src; img.alt = T(s.alt);
+    $("#stage-cap").textContent = T(s.cap);
+    $$(".thumb").forEach((t) => t.setAttribute("aria-current", String(t === b)));
+  });
+  $("#lang").addEventListener("click", () => applyLang(lang === "el" ? "en" : "el", { fromUser: true }));
+}
+
+function setupMail() {
+  if (!CONTACT_EMAIL) return;
+  $("#mail").hidden = false;
+  const link = $("#mail-text");
+  link.textContent = CONTACT_EMAIL;
+  link.href = "mailto:" + CONTACT_EMAIL;
+  const btn = $("#mail-copy");
+  const status = $("#mail-status");
+  btn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(CONTACT_EMAIL); btn.textContent = "✓"; status.textContent = W[lang].copied; }
+    catch (err) {
+      const r = document.createRange(); r.selectNodeContents(link); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "ctrl+c"; status.textContent = W[lang].copyFail;
+    }
+    setTimeout(() => { btn.textContent = "copy"; status.textContent = ""; }, 2000);
+  });
+}
+
+(function theme() {
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") root.dataset.theme = t; } catch (e) {}
+  $("#theme").addEventListener("click", () => {
+    const now = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    const next = now === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
+
+captureEnglish();
+bindEvents();
+setupMail();
+applyLang(detectLang(), { first: true });
+</script>
+</body>
+</html>
