@@ -267,13 +267,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
 .contact .copy, .contact .actions { display: grid; justify-items: start; gap: 14px; }
 #work .actions { justify-items: stretch; }
 .contact p { margin: 0; max-width: 56ch; color: var(--fg-2); }
-.mail { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; justify-self: stretch; font-size: 0.875rem; }
-.mail[hidden] { display: none; }
-.mail + .mail { margin-top: -6px; }
-.mail a { min-width: 0; padding-block: 10px; color: var(--accent); text-underline-offset: 3px; overflow-wrap: anywhere; }
-.mail .btn { flex: none; min-width: 4.75rem; justify-content: center; padding: 11px 12px; }
-@media (max-width: 299px) { .mail { grid-template-columns: minmax(0, 1fr); } }
-.footer { padding-block: 24px 36px; border-top: 1px solid var(--line); font-size: 0.75rem; color: var(--muted); }
+@media (max-width: 299px) { .footer { padding-block: 24px 36px; border-top: 1px solid var(--line); font-size: 0.75rem; color: var(--muted); }
 .footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; }
 .footer a { padding: 8px 4px; color: var(--fg-2); }
 
@@ -459,16 +453,6 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
         </div>
         <div class="actions">
           <a class="btn primary" href="https://github.com/aloualou56" target="_blank" rel="noopener">github.com/aloualou56 ↗</a>
-          <div class="mail" hidden>
-            <a class="mail-text" href="#"></a>
-            <button class="btn mail-copy" type="button" aria-label="Copy email address" title="Copy email address" data-i18n-attr="aria-label:copy_aria;title:copy_aria">copy</button>
-            <span class="sr-only mail-status" role="status"></span>
-          </div>
-          <div class="mail" hidden>
-            <a class="mail-text" href="#"></a>
-            <button class="btn mail-copy" type="button" aria-label="Copy email address" title="Copy email address" data-i18n-attr="aria-label:copy_aria;title:copy_aria">copy</button>
-            <span class="sr-only mail-status" role="status"></span>
-          </div>
         </div>
       </div>
     </div>
@@ -492,7 +476,6 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
    - started / updated: "YYYY-MM", the first and latest commit of the repository.
    - play: a page in this site that runs the project in the browser.
    ========================================================================== */
-const CONTACT_EMAILS = ["hakriti3@gmail.com", "akritidis@roboticsports.org"]; // shown in the Contact section, each with a copy button; remove an address to hide it
 
 const L = (en, el) => ({ en, el });
 let lang = "en";
@@ -1057,25 +1040,6 @@ function bindEvents() {
   $("#lang").addEventListener("click", () => applyLang(lang === "el" ? "en" : "el", { fromUser: true }));
 }
 
-function setupMail() {
-  $$(".mail").forEach((box, i) => {
-    const email = CONTACT_EMAILS[i];
-    if (!email) return;
-    box.hidden = false;
-    const link = $(".mail-text", box), btn = $(".mail-copy", box), status = $(".mail-status", box);
-    link.textContent = email;
-    link.href = "mailto:" + email;
-    btn.addEventListener("click", async () => {
-      try { await navigator.clipboard.writeText(email); btn.textContent = "✓"; status.textContent = W[lang].copied; }
-      catch (err) {
-        const r = document.createRange(); r.selectNodeContents(link); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-        btn.textContent = "ctrl+c"; status.textContent = W[lang].copyFail;
-      }
-      setTimeout(() => { btn.textContent = "copy"; status.textContent = ""; }, 2000);
-    });
-  });
-}
-
 (function theme() {
   const root = document.documentElement;
   try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") root.dataset.theme = t; } catch (e) {}
@@ -1089,7 +1053,6 @@ function setupMail() {
 
 captureEnglish();
 bindEvents();
-setupMail();
 applyLang(detectLang(), { first: true });
 </script>
 </body>

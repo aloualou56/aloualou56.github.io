@@ -14,7 +14,7 @@ Plain HTML, CSS and JavaScript. No build step and no dependencies, so you can op
 - **Dates:** each project has `started` and `updated` ("YYYY-MM"). They come from each repository's first and latest commit on GitHub, so correct them if a project was really started earlier.
 - **Greek:** texts that exist in both languages are written `L("English", "Ελληνικά")`. The Greek for the fixed parts of the page is in the `EL` object, and the English for those parts is in the HTML itself. The site opens in English, remembers the choice from the EN/ΕΛ button, and `…/#el` or `…/#en` opens a specific language. The Greek is written without masculine or feminine forms ("σπουδάζω", "διδάσκω"), so it works for any reader.
 - **Headline words:** the words the "I build…" headline types are in `HEADLINE`, one list per language. Keep each word under 18 characters so the line never wraps. Visitors who prefer reduced motion see a plain sentence instead.
-- **Email:** `CONTACT_EMAILS` lists the addresses shown in the Contact section (up to two), each with a copy button. A plain address on a public page can be picked up by spam bots.
+- **Email:** the addresses are in the "mail --project" section of `index.html` (two `mailto:` links). A plain address on a public page can be picked up by spam bots.
 - **Tools list:** edit `STACK` in the same script.
 - **Images:** `assets/`. The Nebula Requiem screenshots come from that repository's `docs/media`.
 - **Colors and fonts:** the tokens at the top of the `<style>` block. The page follows the visitor's light or dark setting, and the button in the header overrides it.
