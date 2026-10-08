@@ -441,10 +441,15 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
         </div>
         <div class="actions">
           <a class="btn primary" href="https://github.com/aloualou56" target="_blank" rel="noopener">github.com/aloualou56 ↗</a>
-          <div class="mail" id="mail" hidden>
-            <a id="mail-text" href="#"></a>
-            <button class="btn" id="mail-copy" type="button" aria-label="Copy email address" title="Copy email address" data-i18n-attr="aria-label:copy_aria;title:copy_aria">copy</button>
-            <span class="sr-only" id="mail-status" role="status"></span>
+          <div class="mail" hidden>
+            <a class="mail-text" href="#"></a>
+            <button class="btn mail-copy" type="button" aria-label="Copy email address" title="Copy email address" data-i18n-attr="aria-label:copy_aria;title:copy_aria">copy</button>
+            <span class="sr-only mail-status" role="status"></span>
+          </div>
+          <div class="mail" hidden>
+            <a class="mail-text" href="#"></a>
+            <button class="btn mail-copy" type="button" aria-label="Copy email address" title="Copy email address" data-i18n-attr="aria-label:copy_aria;title:copy_aria">copy</button>
+            <span class="sr-only mail-status" role="status"></span>
           </div>
         </div>
       </div>
@@ -469,7 +474,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
    - started / updated: "YYYY-MM", the first and latest commit of the repository.
    - play: a page in this site that runs the project in the browser.
    ========================================================================== */
-const CONTACT_EMAIL = "hakriti3@gmail.com"; // shown in the Contact section with a copy button; set to "" to hide it
+const CONTACT_EMAILS = ["hakriti3@gmail.com", "akritidis@roboticsports.org"]; // shown in the Contact section, each with a copy button; remove an address to hide it
 
 const L = (en, el) => ({ en, el });
 let lang = "en";
@@ -1031,20 +1036,21 @@ function bindEvents() {
 }
 
 function setupMail() {
-  if (!CONTACT_EMAIL) return;
-  $("#mail").hidden = false;
-  const link = $("#mail-text");
-  link.textContent = CONTACT_EMAIL;
-  link.href = "mailto:" + CONTACT_EMAIL;
-  const btn = $("#mail-copy");
-  const status = $("#mail-status");
-  btn.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(CONTACT_EMAIL); btn.textContent = "✓"; status.textContent = W[lang].copied; }
-    catch (err) {
-      const r = document.createRange(); r.selectNodeContents(link); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      btn.textContent = "ctrl+c"; status.textContent = W[lang].copyFail;
-    }
-    setTimeout(() => { btn.textContent = "copy"; status.textContent = ""; }, 2000);
+  $$(".mail").forEach((box, i) => {
+    const email = CONTACT_EMAILS[i];
+    if (!email) return;
+    box.hidden = false;
+    const link = $(".mail-text", box), btn = $(".mail-copy", box), status = $(".mail-status", box);
+    link.textContent = email;
+    link.href = "mailto:" + email;
+    btn.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(email); btn.textContent = "✓"; status.textContent = W[lang].copied; }
+      catch (err) {
+        const r = document.createRange(); r.selectNodeContents(link); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = "ctrl+c"; status.textContent = W[lang].copyFail;
+      }
+      setTimeout(() => { btn.textContent = "copy"; status.textContent = ""; }, 2000);
+    });
   });
 }
 
