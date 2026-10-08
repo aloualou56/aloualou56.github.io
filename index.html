@@ -265,6 +265,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
 .contact { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px 48px; padding: clamp(22px, 5vw, 40px); border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg-2); }
 @media (max-width: 720px) { .contact { grid-template-columns: minmax(0, 1fr); } }
 .contact .copy, .contact .actions { display: grid; justify-items: start; gap: 14px; }
+#work .actions { justify-items: stretch; }
 .contact p { margin: 0; max-width: 56ch; color: var(--fg-2); }
 .mail { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; justify-self: stretch; font-size: 0.875rem; }
 .mail[hidden] { display: none; }
@@ -431,6 +432,21 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
     <div class="wrap">
       <div class="section-head"><h2 id="stack-title" aria-label="What I use" data-i18n-attr="aria-label:h_tools"><span aria-hidden="true"><i class="ps">$</i> cat <span class="path">tools.txt</span></span></h2></div>
       <div class="stack" id="stack-list"></div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="contact">
+        <div class="copy">
+          <h2 id="work-title" aria-label="Work with me" data-i18n-attr="aria-label:h_work"><span aria-hidden="true"><i class="ps">$</i> mail <span class="flag">--project</span></span></h2>
+          <p data-i18n="work_text">Have a project in mind, such as a game, a web app, a booking system or a hardware gadget? Send me an email with a few lines about what you need and I'll get back to you.</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="mailto:akritidis@roboticsports.org?subject=Project%20inquiry" data-i18n="work_btn_work">work email ↗</a>
+          <a class="btn" href="mailto:hakriti3@gmail.com?subject=Project%20inquiry" data-i18n="work_btn_personal">personal email ↗</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -764,6 +780,10 @@ const EL = {
   log_sub: "οι ημερομηνίες είναι το πρώτο και το τελευταίο commit κάθε repository στο GitHub · μερικά projects ξεκίνησαν πριν ανέβουν",
   h_tools: "Τι χρησιμοποιώ",
   h_contact: "Πείτε γεια",
+  h_work: "Συνεργασία",
+  work_text: "Έχετε κάποιο project στο μυαλό σας, όπως παιχνίδι, web εφαρμογή, σύστημα κρατήσεων ή hardware gadget; Στείλτε μου ένα email με λίγες γραμμές για το τι χρειάζεστε και θα σας απαντήσω.",
+  work_btn_work: "email εργασίας ↗",
+  work_btn_personal: "προσωπικό email ↗",
   contact_text: "Τα δημόσια projects μου είναι στο GitHub. Αν κάποιο σας ενδιαφέρει, ανοίξτε ένα issue στο repository του ή ξεκινήστε από το προφίλ μου.",
   copy_aria: "Αντιγραφή διεύθυνσης email",
   footer_text: `© <span id="year">2026</span> Ηλίας · απλό HTML, CSS και JavaScript`,
