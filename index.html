@@ -352,14 +352,14 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
       <h1 id="headline" aria-label="I build games, web apps, hardware gadgets, Android apps, Minecraft bots and automation tools"><span id="line" aria-hidden="true"><span id="prefix">I build</span><span id="typed"><noscript> games, web apps and hardware gadgets</noscript></span><i class="caret"></i></span></h1>
       <div class="hero-cols">
         <div>
-          <p class="lead" data-i18n="lead">Hi, I'm Elias. This page collects the <span data-count="projects">15</span> projects I've made so far, from a bullet-hell roguelike for Android to a Raspberry Pi e-paper display.</p>
+          <p class="lead" data-i18n="lead">Hi, I'm Elias. This page collects the <span data-count="projects">16</span> projects I've made so far, from a bullet-hell roguelike for Android to a Raspberry Pi e-paper display.</p>
           <div class="cta">
             <a class="btn primary" href="#projects" data-i18n="cta_projects">see projects ↓</a>
             <a class="btn" href="https://github.com/aloualou56" target="_blank" rel="noopener">github ↗</a>
           </div>
         </div>
         <aside class="term" aria-label="At a glance" data-i18n-attr="aria-label:glance_aria">
-          <div class="term-bar"><span>elias@aloualou56: ~</span><span><span data-count="projects">15</span> projects</span></div>
+          <div class="term-bar"><span>elias@aloualou56: ~</span><span><span data-count="projects">16</span> projects</span></div>
           <div class="term-body">
             <p class="cmd"><i class="ps">$</i> cat profile.txt</p>
             <dl>
@@ -370,7 +370,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
               <div class="row"><dt data-i18n="k_builds">builds</dt><dd data-i18n="v_builds">Games, web apps, hardware gadgets</dd></div>
               <div class="row"><dt data-i18n="k_langs">languages</dt><dd>Python, Kotlin, Java, C++, C, JavaScript</dd></div>
               <div class="row"><dt data-i18n="k_runs">runs-on</dt><dd data-i18n="v_runs">Android, browsers, Windows, ESP32, Raspberry Pi</dd></div>
-              <div class="row"><dt data-i18n="k_code">code</dt><dd data-i18n="v_code"><span data-count="public">8</span> public, <span data-count="private">7</span> private</dd></div>
+              <div class="row"><dt data-i18n="k_code">code</dt><dd data-i18n="v_code"><span data-count="public">9</span> public, <span data-count="private">7</span> private</dd></div>
               <div class="row"><dt data-i18n="k_latest">latest</dt><dd data-i18n="v_latest"><a href="#nebula">Nebula Requiem</a>, a native Android game</dd></div>
             </dl>
             <p class="cmd"><i class="ps">$</i><i class="caret sm" aria-hidden="true"></i></p>
@@ -539,6 +539,18 @@ const PROJECTS = [
     stack: "Django, Stripe, Twilio", runsOn: L("Web, Android", "Web, Android"),
     credit: { label: "Giormall", url: "https://github.com/Giormall" },
     flow: { mode: "set", label: L("django apps", "εφαρμογές django"), items: ["accounts", "businesses", "bookings", "payments", "notifications", "reviews", "reports"] }
+  },
+  {
+    id: "rogic", title: "Rogic Reworked",
+    kinds: ["hardware"], visibility: "public",
+    repo: "https://github.com/aloualou56/rogic_reworked",
+    started: "2026-10", updated: "2026-10",
+    tagline: L("ROBOROBO's block-programming tool for school robot kits, extended with drive chips and robot calibration.",
+               "Το εργαλείο προγραμματισμού με blocks της ROBOROBO για σχολικά κιτ ρομποτικής, με νέα chips κίνησης και βαθμονόμηση ρομπότ."),
+    desc: L("A reworked build of Rogic 4.0.1, which turns chips dragged onto a canvas into C for the kit's ATmega8 controller. It adds eleven drive chips: forward and backward, arc turns, steer by degrees, stop with brake or coast, drive a distance in centimetres, a two-sensor line follower, and drive plus servos. A Robot Setup dialog balances the wheels and times spins and straight runs, and a motor lock keeps each move separate.",
+            "Μια τροποποιημένη έκδοση του Rogic 4.0.1, που μετατρέπει τα chips που σέρνετε στον καμβά σε C για τον μικροελεγκτή ATmega8 του κιτ. Προσθέτει έντεκα chips κίνησης: μπροστά και πίσω, στροφές σε τόξο, στροφή σε μοίρες, σταμάτημα με φρένο ή ελεύθερη κύλιση, κίνηση για απόσταση σε εκατοστά, line follower με δύο αισθητήρες, και κίνηση μαζί με servo. Ένα παράθυρο Robot Setup εξισορροπεί τους τροχούς και χρονομετρά τις περιστροφές και τις ευθείες, και ένα motor lock κρατά κάθε κίνηση ξεχωριστή."),
+    stack: "C#, .NET Framework, WinForms, AVR C", runsOn: L("Windows, with a ROBOROBO kit", "Windows, με κιτ ROBOROBO"),
+    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: [L("Rogic chips", "chips του Rogic"), L("generated C", "παραγόμενος κώδικας C"), "avr-gcc (WinAVR)", L("ATmega8 robot", "ρομπότ ATmega8")] }
   },
   {
     id: "epaper", title: L("Wall e-paper dashboard", "Πίνακας e-paper στον τοίχο"),
@@ -738,7 +750,7 @@ const EL = {
   eyebrow_1: "σπουδάζω και προγραμματίζω · 2ο έτος",
   eyebrow_2: "αυτή τη στιγμή στο ΔΙΠΑΕ Σερρών (IHU)",
   eyebrow_3: `διδάσκω: <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`,
-  lead: `Γεια σας, με λένε Ηλία. Εδώ θα βρείτε τα <span data-count="projects">15</span> projects που έχω φτιάξει μέχρι τώρα, από ένα roguelike bullet-hell για Android μέχρι μια οθόνη e-paper με Raspberry Pi.`,
+  lead: `Γεια σας, με λένε Ηλία. Εδώ θα βρείτε τα <span data-count="projects">16</span> projects που έχω φτιάξει μέχρι τώρα, από ένα roguelike bullet-hell για Android μέχρι μια οθόνη e-paper με Raspberry Pi.`,
   cta_projects: "δείτε τα projects ↓",
   glance_aria: "Με μια ματιά",
   k_role: "ιδιότητα", v_role: "σπουδές και ανάπτυξη λογισμικού, 2ο έτος",
@@ -748,7 +760,7 @@ const EL = {
   k_builds: "φτιάχνω", v_builds: "Παιχνίδια, web εφαρμογές, hardware gadgets",
   k_langs: "γλώσσες",
   k_runs: "τρέχει-σε", v_runs: "Android, browsers, Windows, ESP32, Raspberry Pi",
-  k_code: "κώδικας", v_code: `<span data-count="public">8</span> δημόσια, <span data-count="private">7</span> ιδιωτικά`,
+  k_code: "κώδικας", v_code: `<span data-count="public">9</span> δημόσια, <span data-count="private">7</span> ιδιωτικά`,
   k_latest: "τελευταίο", v_latest: `<a href="#nebula">Nebula Requiem</a>, native παιχνίδι για Android`,
   h_projects: "Έργα",
   projects_sub: "κάθε κάρτα λέει πού τρέχει το project · το λουκέτο σημαίνει ότι το repository είναι ιδιωτικό",
