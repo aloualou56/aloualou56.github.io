@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rogic Reworked · screenshots</title>
+<meta name="description" content="Screenshots of Rogic Reworked: the Chips2 drive chips, Line Follow, Robot Setup calibration, Motor lock and the generated C code.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e0c0f'/%3E%3Cpath d='M8 10l7 6-7 6' fill='none' stroke='%23fb4362' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 23h8' stroke='%23ece5e9' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<style>
+/* Same tokens and terminal vocabulary as the main page (../index.html). */
+:root {
+  --bg: #0e0c0f; --bg-2: #141116; --bg-3: #1b161c; --line: #2a2229; --line-2: #413640;
+  --fg: #ece5e9; --fg-2: #c3b8be; --muted: #8d8189; --accent: #fb4362; --on-accent: #1c0a0f;
+  --green: #6fe0a0; --cyan: #56c4f5; --amber: #ffc56b;
+  --font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --gutter: clamp(16px, 4vw, 32px);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #faf7f8; --bg-2: #ffffff; --bg-3: #f1eaed; --line: #e5dce1; --line-2: #cfc1c9;
+    --fg: #1b1418; --fg-2: #40343b; --muted: #6c5f66; --accent: #d41f45; --on-accent: #ffffff;
+    --green: #167a45; --cyan: #0a74a6; --amber: #9a5b00;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #faf7f8; --bg-2: #ffffff; --bg-3: #f1eaed; --line: #e5dce1; --line-2: #cfc1c9;
+  --fg: #1b1418; --fg-2: #40343b; --muted: #6c5f66; --accent: #d41f45; --on-accent: #ffffff;
+  --green: #167a45; --cyan: #0a74a6; --amber: #9a5b00;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 0.9375rem/1.7 var(--font); font-variant-ligatures: none; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
+.ps { color: var(--accent); font-style: normal; font-weight: 700; }
+.path { color: var(--cyan); }
+.comment { color: var(--muted); }
+.comment::before { content: "# "; }
+
+.site-header { position: sticky; top: 0; z-index: 20; background: var(--bg); background: color-mix(in srgb, var(--bg) 95%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; min-height: 52px; }
+.brand { margin-right: auto; padding-block: 14px; font-size: 0.875rem; font-weight: 600; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.brand .user { color: var(--green); }
+.brand .at, .brand .sep { color: var(--muted); }
+.btn-sq { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 3px; background: transparent; color: var(--fg-2); cursor: pointer; font: 700 0.75rem/1 var(--font); }
+@media (hover: hover) { .btn-sq:hover { color: var(--fg); border-color: var(--fg-2); } }
+.btn-sq svg { width: 16px; height: 16px; }
+
+.intro { padding-block: clamp(28px, 5vw, 56px) 8px; }
+h1 { margin: 0; font: 800 clamp(1.5rem, 4.4vw, 2.4rem)/1.2 var(--font); letter-spacing: -0.02em; }
+.lead { margin: 14px 0 0; max-width: 70ch; color: var(--fg-2); font-size: 0.875rem; }
+.links { display: flex; flex-wrap: wrap; gap: 0 18px; margin-top: 14px; font-size: 0.8125rem; font-weight: 600; }
+.links a { padding-block: 8px; color: var(--accent); text-decoration: none; }
+.links a::before { content: "[ "; color: var(--muted); font-weight: 400; }
+.links a::after { content: " ]"; color: var(--muted); font-weight: 400; }
+@media (hover: hover) { .links a:hover { text-decoration: underline; text-underline-offset: 3px; } }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.toc a { display: inline-block; padding: 7px 10px; border: 1px solid var(--line-2); border-radius: 3px; color: var(--fg-2); font-size: 0.75rem; text-decoration: none; }
+@media (hover: hover) { .toc a:hover { color: var(--fg); border-color: var(--fg-2); } }
+
+.section { padding-block: clamp(26px, 4vw, 44px); border-bottom: 1px solid var(--line); scroll-margin-top: 60px; }
+.section:last-of-type { border-bottom: 0; }
+h2 { margin: 0; font: 700 clamp(1.05rem, 2.4vw, 1.35rem)/1.3 var(--font); }
+.sub { margin: 8px 0 20px; font-size: 0.8125rem; max-width: 100ch; }
+.shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 18px; }
+figure { display: flex; flex-direction: column; margin: 0; min-width: 0; border: 1px solid var(--line); border-radius: 4px; background: var(--bg-2); overflow: hidden; }
+figure.wide { grid-column: 1 / -1; }
+.frame { display: grid; place-items: center; padding: 14px; background: var(--bg-3); border-bottom: 1px solid var(--line); }
+figure.wide .frame { padding: 0; }
+.frame a { display: block; max-width: 100%; }
+.frame img { width: auto; max-width: 100%; height: auto; border-radius: 2px; }
+figure.wide .frame img { width: 100%; border-radius: 0; }
+figcaption { padding: 10px 14px 12px; font-size: 0.75rem; line-height: 1.6; color: var(--fg-2); }
+figcaption::before { content: "# "; color: var(--muted); }
+
+.footer { padding-block: 24px 36px; border-top: 1px solid var(--line); font-size: 0.75rem; color: var(--muted); }
+.footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; }
+.footer a { padding: 8px 4px; color: var(--fg-2); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="../#rogic"><span class="user">aloualou56</span><span class="at">@</span><span class="user">site</span><span class="sep">:</span><span class="path">~/projects/rogic</span><i class="ps">$</i></a>
+    <button class="btn-sq" id="lang" type="button" aria-label="Switch language to Greek (Ελληνικά)" title="Ελληνικά">ΕΛ</button>
+    <button class="btn-sq" id="theme" type="button" aria-label="Switch between light and dark theme">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap intro">
+    <h1>Rogic Reworked</h1>
+    <p class="lead" id="lead">Screenshots of the new features in Rogic Reworked, taken from the running app.</p>
+    <div class="links">
+      <a href="../#rogic" id="back">back to projects</a>
+      <a href="https://github.com/aloualou56/rogic_reworked" target="_blank" rel="noopener" id="src">source ↗</a>
+    </div>
+    <ul class="toc" id="toc"></ul>
+  </div>
+  <div class="wrap" id="sections"></div>
+  <noscript><div class="wrap"><p>This page needs JavaScript. The same screenshots are in the <a href="https://github.com/aloualou56/rogic_reworked#readme">README on GitHub</a>.</p></div></noscript>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span id="foot">© 2026 Elias · screenshots taken from Rogic 4.0.1 (reworked)</span>
+    <a href="../" id="home">aloualou56.github.io</a>
+  </div>
+</footer>
+
+<script>
+const L = (en, el) => ({ en, el });
+let lang = "en";
+const T = (v) => (v && typeof v === "object" ? (v[lang] ?? v.en) : v);
+const IMG = "../assets/rogic/";
+
+/* EDIT HERE. Each shot: file, width, height, wide (spans the whole row), caption in both languages. */
+const SECTIONS = [
+  {
+    id: "main", title: L("the main window", "το κύριο παράθυρο"),
+    sub: L("The new drive chips live in their own palette tab, Chips2.", "Τα νέα chips κίνησης βρίσκονται στη δική τους καρτέλα της παλέτας, την Chips2."),
+    shots: [
+      ["main-window.jpg", 1266, 893, true, L("A ten-chip program built from the new drive chips. Each chip shows its key setting, such as R 90° or F 120cm.", "Ένα πρόγραμμα με δέκα chips από τα νέα chips κίνησης. Κάθε chip δείχνει τη βασική του ρύθμιση, όπως R 90° ή F 120cm.")],
+      ["chips2-palette.png", 210, 480, false, L("The Chips2 palette with the eleven drive chips, and the Motor lock switch under the category buttons.", "Η καρτέλα Chips2 με τα έντεκα chips κίνησης, και ο διακόπτης Motor lock κάτω από τα κουμπιά κατηγοριών.")],
+      ["motor-lock.png", 708, 162, false, L("The Motor lock switch, off and on.", "Ο διακόπτης Motor lock, κλειστός και ανοιχτός.")],
+      ["dialog-in-context.jpg", 1266, 893, true, L("Clicking the small square on a chip opens its settings over the canvas.", "Πατώντας το μικρό τετράγωνο ενός chip ανοίγουν οι ρυθμίσεις του πάνω από τον καμβά.")]
+    ]
+  },
+  {
+    id: "drive", title: L("drive chips", "chips κίνησης"),
+    sub: L("Every drive chip has its own dialog, coloured by the chip's category.", "Κάθε chip κίνησης έχει το δικό του παράθυρο, χρωματισμένο ανάλογα με την κατηγορία του."),
+    shots: [
+      ["forward.png", 400, 316, false, L("Forward: two motors at speed 15 for 1.5 s.", "Forward: δύο μοτέρ με ταχύτητα 15 για 1.5 s.")],
+      ["forward-4-motors.png", 400, 316, false, L("Forward on a 4-motor robot: pick which of M1 to M4 run.", "Forward σε ρομπότ με 4 μοτέρ: επιλέξτε ποια από τα M1 έως M4 θα κινηθούν.")],
+      ["backward.png", 400, 316, false, L("Backward: the same dialog, driving in reverse.", "Backward: το ίδιο παράθυρο, με κίνηση προς τα πίσω.")],
+      ["steer.png", 400, 262, false, L("Steer: turn by degrees. The time comes from the robot's calibrated 360° spin.", "Steer: στροφή σε μοίρες. Ο χρόνος προκύπτει από τη βαθμονομημένη περιστροφή 360° του ρομπότ.")],
+      ["arc-left-forward.png", 400, 316, false, L("Left arc forward: only one side runs, so the robot pivots around the other wheel.", "Τόξο αριστερά μπροστά: κινείται μόνο η μία πλευρά, οπότε το ρομπότ στρίβει γύρω από τον άλλο τροχό.")],
+      ["arc-right-backward.png", 400, 316, false, L("Right arc backward.", "Τόξο δεξιά προς τα πίσω.")],
+      ["stop-brake.png", 400, 262, false, L("Stop with brake: the robot holds still, so a timed move ends where the timing says.", "Stop με φρένο: το ρομπότ μένει ακίνητο, ώστε μια χρονομετρημένη κίνηση να τελειώνει εκεί που λέει ο χρόνος.")],
+      ["stop-coast.png", 400, 262, false, L("Stop with coast: power is cut and the robot rolls on, then it waits 1 s.", "Stop με ελεύθερη κύλιση: η τροφοδοσία κόβεται και το ρομπότ συνεχίζει να κυλά, μετά περιμένει 1 s.")],
+      ["drive-distance.png", 400, 262, false, L("Drive Distance: 120 cm forward. The dialog shows how long the motors will run.", "Drive Distance: 120 cm μπροστά. Το παράθυρο δείχνει πόση ώρα θα δουλέψουν τα μοτέρ.")],
+      ["combo.png", 400, 292, false, L("Combo: move two servos first, then drive forward for 2 s and stop.", "Combo: πρώτα κινούνται δύο servo, μετά το ρομπότ πηγαίνει μπροστά για 2 s και σταματά.")]
+    ]
+  },
+  {
+    id: "line", title: L("line follow", "line follow"),
+    sub: L("A complete two-sensor line follower in one chip.", "Ένας ολοκληρωμένος line follower με δύο αισθητήρες σε ένα chip."),
+    shots: [
+      ["line-follow.png", 400, 262, false, L("Line Follow: set each motor to normal or reversed.", "Line Follow: ορίστε κάθε μοτέρ ως κανονικό ή αντεστραμμένο.")],
+      ["line-follow-advanced.png", 400, 320, false, L("Advanced settings: sensor ports, polarity, where the line runs, speeds, loop delay and when to stop.", "Προχωρημένες ρυθμίσεις: θύρες αισθητήρων, πολικότητα, θέση της γραμμής, ταχύτητες, καθυστέρηση βρόχου και πότε να σταματήσει.")],
+      ["generated-c-line-follow.jpg", 1266, 893, true, L("The C generated for Line Follow, commented branch by branch in the source editor.", "Ο κώδικας C που παράγεται για το Line Follow, με σχόλια σε κάθε κλάδο, στον επεξεργαστή κώδικα.")]
+    ]
+  },
+  {
+    id: "setup", title: L("robot setup", "ρύθμιση ρομπότ"),
+    sub: L("Calibrate the robot once, and every drive chip uses the result.", "Κάντε τη βαθμονόμηση μία φορά και όλα τα chips κίνησης χρησιμοποιούν το αποτέλεσμα."),
+    shots: [
+      ["setup-menu.png", 420, 85, false, L("Setup ▸ Robot Setup…", "Setup ▸ Robot Setup…")],
+      ["robot-setup.png", 400, 316, false, L("Wheel balance slows the faster wheel and previews the speeds sent. The timings feed Steer and Drive Distance.", "Η ισορροπία τροχών επιβραδύνει τον γρηγορότερο τροχό και δείχνει τις ταχύτητες που στέλνονται. Οι χρόνοι χρησιμοποιούνται από τα Steer και Drive Distance.")],
+      ["test-spin-confirm.jpg", 1266, 893, true, L("Test spin replaces the program with a single 360° Steer chip, to check the timing on the real robot.", "Το Test spin αντικαθιστά το πρόγραμμα με ένα chip Steer 360°, για να ελέγξετε τον χρόνο στο πραγματικό ρομπότ.")],
+      ["test-spin-program.jpg", 720, 360, false, L("The Test spin program: Steer 360° and Stop.", "Το πρόγραμμα του Test spin: Steer 360° και Stop.")],
+      ["test-straight-program.jpg", 720, 360, false, L("The Test straight program: drive 100 cm and stop.", "Το πρόγραμμα του Test straight: 100 cm μπροστά και Stop.")]
+    ]
+  },
+  {
+    id: "code", title: L("generated code", "παραγόμενος κώδικας"),
+    sub: L("Open the source editor from the canvas menu to read the C that Rogic builds.", "Ανοίξτε τον επεξεργαστή κώδικα από το μενού του καμβά για να δείτε τον κώδικα C που φτιάχνει το Rogic."),
+    shots: [
+      ["generated-c-drive.png", 606, 813, false, L("With Motor lock on, every move ends with both motors at 0 and a 0.5 s pause. The Combo chip sets its servos before driving.", "Με το Motor lock ανοιχτό, κάθε κίνηση τελειώνει με τα δύο μοτέρ στο 0 και παύση 0.5 s. Το chip Combo ρυθμίζει τα servo πριν την κίνηση.")]
+    ]
+  }
+];
+
+const UI = {
+  en: { title: "Rogic Reworked · screenshots", lead: "Screenshots of the new features in Rogic Reworked, taken from the running app. Click any image to open it full size.", back: "back to projects", src: "source ↗", foot: "© 2026 Elias · screenshots taken from Rogic 4.0.1 (reworked)", langBtn: "ΕΛ", langAria: "Switch language to Greek (Ελληνικά)", langTitle: "Ελληνικά", theme: "Switch between light and dark theme", open: "Open full size" },
+  el: { title: "Rogic Reworked · στιγμιότυπα", lead: "Στιγμιότυπα από τις νέες λειτουργίες του Rogic Reworked, τραβηγμένα από την εφαρμογή σε λειτουργία. Πατήστε σε μια εικόνα για να την ανοίξετε σε πλήρες μέγεθος.", back: "πίσω στα projects", src: "κώδικας ↗", foot: "© 2026 Ηλίας · στιγμιότυπα από το Rogic 4.0.1 (reworked)", langBtn: "EN", langAria: "Αλλαγή γλώσσας σε αγγλικά (English)", langTitle: "English", theme: "Εναλλαγή μεταξύ φωτεινού και σκούρου θέματος", open: "Άνοιγμα σε πλήρες μέγεθος" }
+};
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function render() {
+  const u = UI[lang];
+  document.documentElement.lang = lang;
+  document.title = u.title;
+  $("#lead").textContent = u.lead;
+  $("#back").textContent = u.back;
+  $("#src").textContent = u.src;
+  $("#foot").textContent = u.foot;
+  const b = $("#lang");
+  b.textContent = u.langBtn; b.setAttribute("aria-label", u.langAria); b.title = u.langTitle;
+  $("#theme").setAttribute("aria-label", u.theme);
+  $("#toc").innerHTML = SECTIONS.map((s) => `<li><a href="#${s.id}">./${esc(T(s.title)).replace(/ /g, "-")}</a></li>`).join("");
+  $("#sections").innerHTML = SECTIONS.map((s) => `
+    <section class="section" id="${s.id}" aria-labelledby="${s.id}-h">
+      <h2 id="${s.id}-h"><i class="ps">$</i> ls <span class="path">${esc(T(s.title)).replace(/ /g, "-")}/</span></h2>
+      <p class="sub comment">${esc(T(s.sub))}</p>
+      <div class="shots">${s.shots.map(([file, w, h, wide, cap]) => `
+        <figure${wide ? ' class="wide"' : ""}>
+          <div class="frame"><a href="${IMG + file}" target="_blank" rel="noopener" aria-label="${esc(u.open)}: ${esc(T(cap))}"><img src="${IMG + file}" alt="${esc(T(cap))}" width="${w}" height="${h}" loading="lazy" decoding="async"></a></div>
+          <figcaption>${esc(T(cap))}</figcaption>
+        </figure>`).join("")}
+      </div>
+    </section>`).join("");
+}
+
+function detectLang() {
+  const h = location.hash.slice(1).toLowerCase();
+  if (h === "el" || h === "en") return h;
+  try { const s = localStorage.getItem("lang"); if (s === "el" || s === "en") return s; } catch (e) {}
+  return "en";
+}
+
+(function theme() {
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("theme"); if (t === "light" || t === "dark") root.dataset.theme = t; } catch (e) {}
+  $("#theme").addEventListener("click", () => {
+    const now = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    const next = now === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
+
+$("#lang").addEventListener("click", () => {
+  lang = lang === "el" ? "en" : "el";
+  try { localStorage.setItem("lang", lang); } catch (e) {}
+  render();
+});
+
+lang = detectLang();
+render();
+if (location.hash.length > 3) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+</script>
+</body>
+</html>

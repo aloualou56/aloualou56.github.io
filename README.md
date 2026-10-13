@@ -7,6 +7,7 @@ Plain HTML, CSS and JavaScript. No build step and no dependencies, so you can op
 - `index.html`: the whole site (styles, content and script).
 - `assets/`: screenshots and photos.
 - `play/nebula-web.html`: the original single-file web edition of Nebula Requiem, copied from its repository. The "play in browser" button on its card opens this page.
+- `rogic/index.html`: the screenshots page of Rogic Reworked. The "screenshots" link on its card (the `shots` field in `PROJECTS`) opens it. The images and their English and Greek captions are in the `SECTIONS` list at the top of its script, and the images themselves are in `assets/rogic/`, the same ones as in the repository's `docs/screenshots`, plus `cover.jpg` for the card.
 
 ## Edit
 

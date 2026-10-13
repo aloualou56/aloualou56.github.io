@@ -478,6 +478,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
    - cover: either image {src, alt} or flow {mode: "chain" | "set", label, items}.
    - started / updated: "YYYY-MM", the first and latest commit of the repository.
    - play: a page in this site that runs the project in the browser.
+   - shots: a page in this site with more screenshots of the project.
    ========================================================================== */
 
 const L = (en, el) => ({ en, el });
@@ -550,7 +551,8 @@ const PROJECTS = [
     desc: L("A reworked build of Rogic 4.0.1, which turns chips dragged onto a canvas into C for the kit's ATmega8 controller. It adds eleven drive chips: forward and backward, arc turns, steer by degrees, stop with brake or coast, drive a distance in centimetres, a two-sensor line follower, and drive plus servos. A Robot Setup dialog balances the wheels and times spins and straight runs, and a motor lock keeps each move separate.",
             "Μια τροποποιημένη έκδοση του Rogic 4.0.1, που μετατρέπει τα chips που σέρνετε στον καμβά σε C για τον μικροελεγκτή ATmega8 του κιτ. Προσθέτει έντεκα chips κίνησης: μπροστά και πίσω, στροφές σε τόξο, στροφή σε μοίρες, σταμάτημα με φρένο ή ελεύθερη κύλιση, κίνηση για απόσταση σε εκατοστά, line follower με δύο αισθητήρες, και κίνηση μαζί με servo. Ένα παράθυρο Robot Setup εξισορροπεί τους τροχούς και χρονομετρά τις περιστροφές και τις ευθείες, και ένα motor lock κρατά κάθε κίνηση ξεχωριστή."),
     stack: "C#, .NET Framework, WinForms, AVR C", runsOn: L("Windows, with a ROBOROBO kit", "Windows, με κιτ ROBOROBO"),
-    flow: { mode: "chain", label: L("how it works", "πώς λειτουργεί"), items: [L("Rogic chips", "chips του Rogic"), L("generated C", "παραγόμενος κώδικας C"), "avr-gcc (WinAVR)", L("ATmega8 robot", "ρομπότ ATmega8")] }
+    shots: "rogic/",
+    image: { src: "assets/rogic/cover.jpg", alt: L("Rogic Reworked with the Chips2 palette open and a program of Forward, Steer, Distance, arc, Backward, Combo, Line Follow and Stop chips", "Το Rogic Reworked με ανοιχτή την παλέτα Chips2 και ένα πρόγραμμα με chips Forward, Steer, Distance, τόξου, Backward, Combo, Line Follow και Stop") }
   },
   {
     id: "epaper", title: L("Wall e-paper dashboard", "Πίνακας e-paper στον τοίχο"),
@@ -719,7 +721,7 @@ const STACK = [
 const W = {
   en: {
     stack: "stack", runs: "runs-on", period: "period", builtWith: "built-with",
-    pub: "public", priv: "private", source: "source ↗", demo: "live demo ↗", apk: "download apk ↗", play: "play in browser ▶", privRepo: "private repository",
+    pub: "public", priv: "private", source: "source ↗", demo: "live demo ↗", apk: "download apk ↗", play: "play in browser ▶", privRepo: "private repository", shotsLink: "screenshots",
     warning: "warning:", shots: (t) => `Screenshots of ${t}`, then: ", then ", sep: ", ",
     all: "all", now: "now", updated: (d) => `updated ${d}`,
     showingAll: (n) => `# showing all ${n} projects`, showing: (s, t, k) => `# showing ${s} of ${t} projects: ${k}`,
@@ -728,7 +730,7 @@ const W = {
   },
   el: {
     stack: "τεχνολογίες", runs: "τρέχει-σε", period: "περίοδος", builtWith: "συνεργασία",
-    pub: "δημόσιο", priv: "ιδιωτικό", source: "κώδικας ↗", demo: "live demo ↗", apk: "λήψη apk ↗", play: "παίξτε στον browser ▶", privRepo: "ιδιωτικό repository",
+    pub: "δημόσιο", priv: "ιδιωτικό", source: "κώδικας ↗", demo: "live demo ↗", apk: "λήψη apk ↗", play: "παίξτε στον browser ▶", privRepo: "ιδιωτικό repository", shotsLink: "στιγμιότυπα",
     warning: "προσοχή:", shots: (t) => `Στιγμιότυπα του ${t}`, then: ", μετά ", sep: ", ",
     all: "όλα", now: "τώρα", updated: (d) => `ενημερώθηκε ${d}`,
     showingAll: (n) => `# εμφανίζονται και τα ${n} projects`, showing: (s, t, k) => `# εμφανίζονται ${s} από ${t} projects: ${k}`,
@@ -818,6 +820,7 @@ function warnHtml(p) {
 function linksHtml(p) {
   const w = W[lang], out = [];
   if (p.play) out.push(`<a class="play" href="${esc(p.play)}" target="_blank" rel="noopener">${w.play}</a>`);
+  if (p.shots) out.push(`<a href="${esc(p.shots)}">${w.shotsLink}</a>`);
   if (p.download) out.push(`<a href="${esc(p.download)}" target="_blank" rel="noopener">${w.apk}</a>`);
   if (p.repo) out.push(`<a href="${esc(p.repo)}" target="_blank" rel="noopener">${w.source}</a>`);
   if (p.demo) out.push(`<a href="${esc(p.demo)}" target="_blank" rel="noopener">${w.demo}</a>`);
