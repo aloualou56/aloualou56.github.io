@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Elias · aloualou56</title>
-<meta name="description" content="Elias, a second-year student at the International Hellenic University (ΔΙΠΑΕ Σερρών) and a teacher in the Robotic Sports department of M.G.S. Panserraikos in Serres, builds games, web apps and small hardware gadgets. Projects, tech stack and contact.">
+<meta name="description" content="Elias, a second-year student at the International Hellenic University (ΔΙΠΑΕ Σερρών) and a teacher in the Robotic Sports department of M.G.S. Panserraikos in Serres, builds games, web apps and small hardware gadgets. Winner of the ARGUS Open Innovation Challenge 2026. Projects, distinctions, tech stack and contact.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e0c0f'/%3E%3Cpath d='M8 10l7 6-7 6' fill='none' stroke='%23fb4362' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 23h8' stroke='%23ece5e9' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -318,6 +318,28 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
 .what-t a { color: var(--accent); text-underline-offset: 3px; }
 .upd { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); }
 .now .what { padding-bottom: 8px; }
+.entry.aw .what::before { content: "★"; color: var(--amber); }
+.entry.aw time { color: var(--amber); }
+.entry.aw .log-link { color: var(--amber); }
+.aw-tag { font-size: 0.75rem; color: var(--amber); }
+.aw-tag::before { content: "#"; }
+
+/* distinctions */
+.awards { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.award { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 6px 22px; padding: 18px 20px; border: 1px solid var(--line); border-left: 3px solid var(--aw, var(--amber)); border-radius: 4px; background: var(--bg-2); }
+.award.top { border-color: var(--amber); border-left-width: 3px; }
+.award .rank { display: flex; flex-direction: column; gap: 6px; }
+.award .rank b { font-size: 1.6rem; line-height: 1; font-weight: 700; letter-spacing: -0.03em; color: var(--aw, var(--amber)); }
+.award .rank small { font-size: 0.75rem; color: var(--muted); }
+.award .rank time { font-size: 0.75rem; color: var(--cyan); }
+.award h3 { margin: 0; font-size: 0.9375rem; line-height: 1.4; }
+.award .role { margin: 2px 0 0; font-size: 0.75rem; color: var(--cyan); }
+.award .role::before { content: "# "; color: var(--muted); }
+.award p.text { margin: 6px 0 0; font-size: 0.8125rem; line-height: 1.6; color: var(--fg-2); }
+.award .links { margin-top: 2px; }
+@media (max-width: 600px) { .award { grid-template-columns: minmax(0, 1fr); } .award .rank { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; } }
+.badge { align-self: flex-start; display: inline-flex; text-decoration: none; gap: 6px; padding: 4px 9px; border: 1px solid var(--amber); border-radius: 3px; font-size: 0.75rem; font-weight: 700; line-height: 1.4; color: var(--amber); }
+.badge::before { content: "★"; }
 .now .what-t { margin: 0; color: var(--fg); }
 @media (max-width: 480px) { .entry, .now { grid-template-columns: 4.6rem minmax(0, 1fr); gap: 0 12px; } }
 </style>
@@ -330,6 +352,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
     <a class="brand" href="#top" aria-label="aloualou56, back to top" data-i18n-attr="aria-label:brand_aria"><span class="user">aloualou56</span><span class="at">@</span><span class="user">site</span><span class="sep">:</span><span class="path">~</span><i class="ps">$</i><i class="caret sm" aria-hidden="true"></i></a>
     <nav class="nav" aria-label="Sections" data-i18n-attr="aria-label:nav_aria">
       <a href="#projects" data-i18n="nav_projects">projects</a>
+      <a href="#awards" data-i18n="nav_awards">awards</a>
       <a href="#about" data-i18n="nav_about">about</a>
       <a href="#timeline" data-i18n="nav_log">timeline</a>
       <a href="#contact" data-i18n="nav_contact">contact</a>
@@ -348,18 +371,19 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
         <p class="comment" data-i18n="eyebrow_1">second-year student developer</p>
         <p class="comment" data-i18n="eyebrow_2">currently at <span lang="el">ΔΙΠΑΕ Σερρών</span> (IHU)</p>
         <p class="comment" data-i18n="eyebrow_3">teacher, <a href="https://panserraikos.roboticsports.org/" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a></p>
+        <p class="comment" data-i18n="eyebrow_4"><a href="#awards">1st place overall, ARGUS Open Innovation Challenge 2026</a></p>
       </div>
       <h1 id="headline" aria-label="I build games, web apps, hardware gadgets, Android apps, Minecraft bots and automation tools"><span id="line" aria-hidden="true"><span id="prefix">I build</span><span id="typed"><noscript> games, web apps and hardware gadgets</noscript></span><i class="caret"></i></span></h1>
       <div class="hero-cols">
         <div>
-          <p class="lead" data-i18n="lead">Hi, I'm Elias. This page collects the <span data-count="projects">16</span> projects I've made so far, from a bullet-hell roguelike for Android to a Raspberry Pi e-paper display.</p>
+          <p class="lead" data-i18n="lead">Hi, I'm Elias. This page collects the <span data-count="projects">18</span> projects I've made so far, from a bullet-hell roguelike for Android to Aegis, the monument-guarding map game that won the ARGUS Open Innovation Challenge 2026.</p>
           <div class="cta">
             <a class="btn primary" href="#projects" data-i18n="cta_projects">see projects ↓</a>
             <a class="btn" href="https://github.com/aloualou56" target="_blank" rel="noopener">github ↗</a>
           </div>
         </div>
         <aside class="term" aria-label="At a glance" data-i18n-attr="aria-label:glance_aria">
-          <div class="term-bar"><span>elias@aloualou56: ~</span><span><span data-count="projects">16</span> projects</span></div>
+          <div class="term-bar"><span>elias@aloualou56: ~</span><span><span data-count="projects">18</span> projects</span></div>
           <div class="term-body">
             <p class="cmd"><i class="ps">$</i> cat profile.txt</p>
             <dl>
@@ -367,11 +391,12 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
               <div class="row"><dt data-i18n="k_school">school</dt><dd data-i18n="v_school"><span lang="el">ΔΙΠΑΕ Σερρών</span>, International Hellenic University (IHU)</dd></div>
               <div class="row"><dt data-i18n="k_dept">department</dt><dd data-i18n="v_dept"><a href="https://www.ict.ihu.gr/en/" target="_blank" rel="noopener">Computer, Informatics and Telecommunications Engineering</a></dd></div>
               <div class="row"><dt data-i18n="k_teach">teaching</dt><dd data-i18n="v_teach"><a href="https://panserraikos.roboticsports.org/" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>, Serres: the younger generations</dd></div>
+              <div class="row"><dt data-i18n="k_awards">awards</dt><dd data-i18n="v_awards"><a href="#awards">1st overall + 1st in Track A, ARGUS 2026</a>; gold, silver and bronze at the 25th Robot Olympiad</dd></div>
               <div class="row"><dt data-i18n="k_builds">builds</dt><dd data-i18n="v_builds">Games, web apps, hardware gadgets</dd></div>
-              <div class="row"><dt data-i18n="k_langs">languages</dt><dd>Python, Kotlin, Java, C++, C, JavaScript</dd></div>
+              <div class="row"><dt data-i18n="k_langs">languages</dt><dd>Python, Kotlin, Java, C++, C, JavaScript, TypeScript</dd></div>
               <div class="row"><dt data-i18n="k_runs">runs-on</dt><dd data-i18n="v_runs">Android, browsers, Windows, ESP32, Raspberry Pi</dd></div>
-              <div class="row"><dt data-i18n="k_code">code</dt><dd data-i18n="v_code"><span data-count="public">9</span> public, <span data-count="private">7</span> private</dd></div>
-              <div class="row"><dt data-i18n="k_latest">latest</dt><dd data-i18n="v_latest"><a href="#nebula">Nebula Requiem</a>, a native Android game</dd></div>
+              <div class="row"><dt data-i18n="k_code">code</dt><dd data-i18n="v_code"><span data-count="public">10</span> public, <span data-count="private">8</span> private</dd></div>
+              <div class="row"><dt data-i18n="k_latest">latest</dt><dd data-i18n="v_latest"><a href="#rogic-esp">Rogic to ESP32</a>, a Wi-Fi robot controller with its own PCB</dd></div>
             </dl>
             <p class="cmd"><i class="ps">$</i><i class="caret sm" aria-hidden="true"></i></p>
           </div>
@@ -394,6 +419,18 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
     </div>
   </section>
 
+  <section class="section" id="awards" aria-labelledby="awards-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="awards-title" aria-label="Distinctions" data-i18n-attr="aria-label:h_awards"><span aria-hidden="true"><i class="ps">$</i> cat <span class="path">awards.log</span></span></h2>
+        <p class="sub comment" data-i18n="awards_sub">competitions I took part in as an athlete or a developer, and one I took part in as a coach · newest first</p>
+      </div>
+      <ol class="awards" id="awards-list">
+        <noscript><li>1st place overall and 1st place in Track A, ARGUS Open Innovation Challenge 2026 · 1 gold, 1 silver and 2 bronze medals at the 25th International Robot Olympiad, Athens 2024 · 10 medals at the 1st HRSF League · coach of silver medallists at TechATHLON 2026.</li></noscript>
+      </ol>
+    </div>
+  </section>
+
   <section class="section" id="about" aria-labelledby="about-title">
     <div class="wrap">
       <div class="section-head"><h2 id="about-title" aria-label="About me" data-i18n-attr="aria-label:h_about"><span aria-hidden="true"><i class="ps">$</i> cat <span class="path">about.md</span></span></h2></div>
@@ -407,8 +444,8 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
         </div>
         <div class="likes" id="likes">
           <a class="like" href="#projects" data-filter="games"><b>./games <small data-kind-count="games"></small></b><p data-i18n="like_games">Bullet patterns, collision, procedural worlds and the maths behind them.</p></a>
-          <a class="like" href="#projects" data-filter="web"><b>./web-apps <small data-kind-count="web"></small></b><p data-i18n="like_web">Booking and school management systems, both built with Django.</p></a>
-          <a class="like" href="#projects" data-filter="hardware"><b>./hardware <small data-kind-count="hardware"></small></b><p data-i18n="like_hw">E-paper displays, an ESP32 monitor and an NFC reader app.</p></a>
+          <a class="like" href="#projects" data-filter="web"><b>./web-apps <small data-kind-count="web"></small></b><p data-i18n="like_web">Booking and school management systems in Django, and a map game in React.</p></a>
+          <a class="like" href="#projects" data-filter="hardware"><b>./hardware <small data-kind-count="hardware"></small></b><p data-i18n="like_hw">E-paper displays, ESP32 boards, a robot kit's tools and an NFC reader app.</p></a>
         </div>
       </div>
     </div>
@@ -418,7 +455,7 @@ h3 { margin: 0; font: 700 1.05rem/1.3 var(--font); letter-spacing: -0.01em; }
     <div class="wrap">
       <div class="section-head">
         <h2 id="timeline-title" aria-label="Timeline" data-i18n-attr="aria-label:h_log"><span aria-hidden="true"><i class="ps">$</i> git log <span class="flag">--oneline</span></span></h2>
-        <p class="sub comment" data-i18n="log_sub">dates are the first and latest commit of each repository on GitHub · some projects were started before they were uploaded</p>
+        <p class="sub comment" data-i18n="log_sub">dates are the first and latest commit of each repository on GitHub · some projects were started before they were uploaded · ★ marks a distinction</p>
       </div>
       <ol class="log" id="log"></ol>
     </div>
@@ -530,6 +567,21 @@ const PROJECTS = [
     ]
   },
   {
+    id: "aegis", title: "Aegis",
+    kinds: ["games", "web"], visibility: "public",
+    repo: "https://github.com/aloualou56/argus_trackA",
+    play: "https://aloualou56.github.io/argus_trackA/",
+    started: "2026-10", updated: "2026-11",
+    award: L("1st place overall · ARGUS Open Innovation Challenge 2026", "1η θέση συνολικά · ARGUS Open Innovation Challenge 2026"),
+    tagline: L("A map game about protecting real monuments, built on real data from the EU ARGUS project.",
+               "Ένα παιχνίδι σε χάρτη για την προστασία πραγματικών μνημείων, με πραγματικά δεδομένα από το ευρωπαϊκό έργο ARGUS."),
+    desc: L("Pick one of the five ARGUS monuments on a satellite map of Europe, from Delos to Schenkenberg, and place sensors on the real building with a small budget. A real ARGUS alarm from 2026 then replays on the map and shows whether your sensors would have caught it, and the real ARGUS sensors appear at their real positions. It plays in Greek and English, works offline, has a class mode for teachers, and a Raspberry Pi feeds it ARGUS's newest readings every two hours.",
+            "Διαλέξτε ένα από τα πέντε μνημεία του ARGUS σε δορυφορικό χάρτη της Ευρώπης, από τη Δήλο ως το Schenkenberg, και τοποθετήστε αισθητήρες στο πραγματικό κτίριο με μικρό προϋπολογισμό. Μετά ένας πραγματικός συναγερμός του ARGUS από το 2026 ξαναπαίζει στον χάρτη και δείχνει αν οι αισθητήρες σας θα τον είχαν πιάσει, και οι πραγματικοί αισθητήρες του ARGUS εμφανίζονται στις πραγματικές τους θέσεις. Παίζεται στα ελληνικά και στα αγγλικά, δουλεύει offline, έχει λειτουργία τάξης για εκπαιδευτικούς, και ένα Raspberry Pi του δίνει τις νεότερες μετρήσεις του ARGUS κάθε δύο ώρες."),
+    stack: "TypeScript, React, Leaflet, Python, Raspberry Pi", runsOn: L("Browsers, on phones and computers", "Browsers, σε κινητά και υπολογιστές"),
+    credit: [{ label: "Giormall", url: "https://github.com/Giormall" }, { label: L("Vasileios Sevetlidis", "Βασίλειος Σεβετλίδης") }],
+    image: { src: "assets/aegis/cover.jpg", alt: L("Aegis: a satellite map of Europe with the five ARGUS monuments marked, Delos selected, and a How it works panel", "Aegis: δορυφορικός χάρτης της Ευρώπης με τα πέντε μνημεία του ARGUS, επιλεγμένη η Δήλος, και ένα πλαίσιο «Πώς παίζεται»") }
+  },
+  {
     id: "reserva", title: "Reserva",
     kinds: ["web", "android"], visibility: "public",
     repo: "https://github.com/aloualou56/online-booking-system",
@@ -554,6 +606,17 @@ const PROJECTS = [
     stack: "C#, .NET Framework, WinForms, AVR C", runsOn: L("Windows, with a ROBOROBO kit", "Windows, με κιτ ROBOROBO"),
     shots: "rogic/",
     image: { src: "assets/rogic/cover.jpg", alt: L("Rogic Reworked with the Chips2 palette open and a program of Forward, Steer, Distance, arc, Backward, Combo, Line Follow and Stop chips", "Το Rogic Reworked με ανοιχτή την παλέτα Chips2 και ένα πρόγραμμα με chips Forward, Steer, Distance, τόξου, Backward, Combo, Line Follow και Stop") }
+  },
+  {
+    id: "rogic-esp", title: "Rogic to ESP32",
+    kinds: ["hardware"], visibility: "private",
+    started: "2026-11", updated: "2026-11",
+    tagline: L("Runs a ROBOROBO Rogic kit's parts from an ESP32, with the kit's own commands and a web page over Wi-Fi.",
+               "Οδηγεί τα εξαρτήματα ενός κιτ ROBOROBO Rogic από ένα ESP32, με τις εντολές του κιτ και μια ιστοσελίδα μέσω Wi-Fi."),
+    desc: L("Made for the kids' robotics class I teach. A program is a short Arduino file with kit-style commands such as on(OUT1), servo1(107) or if (remocon1). All programs upload together, and the kids pick, start and stop one from the robot's own web page, which also shows the Serial output and each program's code. It drives buttons, sensors, LEDs, a buzzer, servos, two DC motors and the kit's IR remote, and I designed a plug-in carrier PCB for it in KiCad.",
+            "Φτιαγμένο για το τμήμα ρομποτικής παιδιών όπου διδάσκω. Ένα πρόγραμμα είναι ένα μικρό αρχείο Arduino με εντολές σαν του κιτ, όπως on(OUT1), servo1(107) ή if (remocon1). Όλα τα προγράμματα ανεβαίνουν μαζί και τα παιδιά διαλέγουν, ξεκινούν και σταματούν ένα από την ιστοσελίδα του ίδιου του ρομπότ, που δείχνει επίσης την έξοδο Serial και τον κώδικα κάθε προγράμματος. Οδηγεί κουμπιά, αισθητήρες, LED, buzzer, servo, δύο μοτέρ DC και το υπέρυθρο τηλεχειριστήριο του κιτ, και σχεδίασα γι' αυτό μια πλακέτα (carrier PCB) στο KiCad."),
+    stack: "C++ (Arduino), PlatformIO, KiCad", runsOn: L("ESP32 DevKitC, with a Rogic kit", "ESP32 DevKitC, με κιτ Rogic"),
+    image: { src: "assets/rogic-esp/cover.jpg", alt: L("3D render of the carrier PCB v1.4 with the ESP32 board, the HR8833 motor driver, capacitors, a screw terminal and rows of servo and sensor pins", "3D απεικόνιση της πλακέτας v1.4 με το ESP32, τον οδηγό μοτέρ HR8833, πυκνωτές, κλέμα και σειρές από ακίδες για servo και αισθητήρες") }
   },
   {
     id: "epaper", title: L("Wall e-paper dashboard", "Πίνακας e-paper στον τοίχο"),
@@ -710,12 +773,52 @@ const PROJECTS = [
 const FEATURED = PROJECTS.find((p) => p.featured);
 
 const STACK = [
-  [L("languages", "γλώσσες"), ["Python", "Kotlin", "Java", "C++", "C", "JavaScript", "HTML + CSS"]],
-  [L("web", "web"), ["Django", "Flask", "Tailwind CSS"]],
+  [L("languages", "γλώσσες"), ["Python", "Kotlin", "Java", "C++", "C", "JavaScript", "TypeScript", "HTML + CSS"]],
+  [L("web", "web"), ["Django", "Flask", "React + Vite", "Leaflet", "Tailwind CSS"]],
   [L("android-and-games", "android-και-παιχνίδια"), ["Android", "SDL3", "Java 2D", "WebView"]],
-  [L("hardware", "hardware"), ["ESP32", "Arduino + PlatformIO", "Raspberry Pi", "E-paper displays", "NFC"]],
+  [L("hardware", "hardware"), ["ESP32", "Arduino + PlatformIO", "KiCad (PCB design)", "Raspberry Pi", "E-paper displays", "NFC"]],
   [L("automation", "αυτοματισμοί"), ["Playwright", "Tesseract OCR", "Node.js", "Mineflayer", "pandas + openpyxl", "Tkinter", "PyInstaller"]],
-  [L("services-and-tooling", "υπηρεσίες-και-εργαλεία"), ["Git + GitHub Actions", "Stripe", "Twilio", "PostgreSQL + SQLite", "Render", "Vercel"]]
+  [L("services-and-tooling", "υπηρεσίες-και-εργαλεία"), ["Git + GitHub Actions", "Stripe", "Twilio", "PostgreSQL + SQLite", "Supabase", "Render", "Vercel"]]
+];
+
+
+// Distinctions, newest first. rank is the big mark on the left; links are optional.
+const AWARDS = [
+  {
+    date: "2026", when: "2026-11", top: true, rank: "1st",
+    log: L("1st place overall and 1st in Track A, with Aegis", "1η θέση συνολικά και 1η στο Track A, με το Aegis"), rankNote: L("overall, and in Track A", "συνολικά, και στο Track A"),
+    title: "ARGUS Open Innovation Challenge 2026",
+    role: L("developer · team of three", "ανάπτυξη · ομάδα τριών ατόμων"),
+    text: L("First place overall, and first place in Track A (Heritage and Citizen Science), with Aegis, a map game that lets anyone guard a real monument using real data from the EU ARGUS project. Built with Georgios Mallousis and Vasileios Sevetlidis.",
+            "Πρώτη θέση συνολικά και πρώτη θέση στο Track A (Πολιτιστική κληρονομιά και επιστήμη των πολιτών), με το Aegis, ένα παιχνίδι σε χάρτη όπου ο καθένας φυλάει ένα πραγματικό μνημείο με πραγματικά δεδομένα από το ευρωπαϊκό έργο ARGUS. Με τους Γεώργιο Μαλλούση και Βασίλειο Σεβετλίδη."),
+    links: [{ href: "#aegis", label: L("the project", "το project") }, { href: "https://aloualou56.github.io/argus_trackA/", label: L("play Aegis ↗", "παίξτε το Aegis ↗"), ext: true }]
+  },
+  {
+    date: "2026", when: "2026-07", rank: L("silver", "ασημένια"),
+    log: L("Coach: my Panserraikos athletes won silver in two categories", "Προπόνηση: οι αθλητές μου στον Πανσερραϊκό κέρδισαν ασημένιο σε δύο κατηγορίες"), rankNote: L("medals for my athletes", "μετάλλια για τους αθλητές μου"), aw: "var(--grey)",
+    title: L("8th Panhellenic Sports Robotics Championship · TechATHLON 2026", "8ο Πανελλήνιο Πρωτάθλημα Αθλητικής Ρομποτικής · TechATHLON 2026"),
+    role: L("coach · M.G.S. Panserraikos", "προπόνηση · Μ.Γ.Σ. Πανσερραϊκός"),
+    text: L("The final of the Hellenic Robotic Sports Federation (HRSF) championship, in Nea Smyrni, Athens. With co-coach Grigorios Kalogiantsidis I prepared the Panserraikos athletes, who won silver in the primary-school and in the secondary-school category.",
+            "Ο τελικός του πρωταθλήματος της Ελληνικής Ομοσπονδίας Αθλημάτων Ρομποτικής & Τεχνολογίας (ΕΛ.Ο.Α.Ρ.Τ.) στη Νέα Σμύρνη. Μαζί με τον Γρηγόριο Καλογιαντσίδη προετοίμασα τους αθλητές του Πανσερραϊκού, που κέρδισαν ασημένιο μετάλλιο στην κατηγορία Δημοτικού και στην κατηγορία Γυμνασίου-Λυκείου."),
+    links: [{ href: "https://lionnews.gr/mgs-panserraikos-tessera-asimenia-metallia-gia-tous-athlites-robotikis-sto-8o-techathlon-2026/", label: L("news ↗", "είδηση ↗"), ext: true, el: true }]
+  },
+  {
+    date: "2024", when: "2024-01", rank: "1 · 1 · 2",
+    log: L("Greek national team: 1 gold, 1 silver and 2 bronze medals, in Athens", "Εθνική ομάδα Ελλάδας: 1 χρυσό, 1 ασημένιο και 2 χάλκινα μετάλλια, στην Αθήνα"), rankNote: L("gold · silver · bronze", "χρυσό · ασημένιο · χάλκινα"),
+    title: L("25th International Robot Olympiad (IRO)", "25η Διεθνής Ολυμπιάδα Ρομποτικής (IRO)"),
+    role: L("athlete · Greek national team", "αγώνες · Εθνική ομάδα Ελλάδας"),
+    text: L("Held in Athens on 16–20 January 2024, the first time the Olympiad came to Greece. Competing in a pair with Konstantinos Kasapis, we won 1 gold, 1 silver and 2 bronze medals. The NFC Watch Decoder app on this page was made for the same event.",
+            "Έγινε στην Αθήνα στις 16–20 Ιανουαρίου 2024, πρώτη φορά στην Ελλάδα. Σε δυάδα με τον Κωνσταντίνο Κασάπη κερδίσαμε 1 χρυσό, 1 ασημένιο και 2 χάλκινα μετάλλια. Η εφαρμογή NFC Watch Decoder αυτής της σελίδας φτιάχτηκε για την ίδια διοργάνωση."),
+    links: [{ href: "#nfc", label: L("NFC Watch Decoder", "NFC Watch Decoder") }]
+  },
+  {
+    date: "2023", when: "2023", rank: "10",
+    log: L("10 medals at the federation's first national championship", "10 μετάλλια στο πρώτο πανελλήνιο πρωτάθλημα της ομοσπονδίας"), rankNote: L("medals", "μετάλλια"),
+    title: L("1st Panhellenic Sports Robotics Championship · HRSF League", "1ο Πανελλήνιο Πρωτάθλημα Αθλητικής Ρομποτικής · HRSF League"),
+    role: L("athlete", "αγώνες"),
+    text: L("The first national championship of the Hellenic Robotic Sports Federation (HRSF). Competing in a pair with Konstantinos Kasapis, we won 10 medals.",
+            "Το πρώτο πανελλήνιο πρωτάθλημα της Ελληνικής Ομοσπονδίας Αθλημάτων Ρομποτικής & Τεχνολογίας (ΕΛ.Ο.Α.Ρ.Τ. – HRSF). Σε δυάδα με τον Κωνσταντίνο Κασάπη κερδίσαμε 10 μετάλλια.")
+  }
 ];
 
 /* ============================== words used while building the page ============================== */
@@ -724,7 +827,7 @@ const W = {
     stack: "stack", runs: "runs-on", period: "period", builtWith: "built-with",
     pub: "public", priv: "private", source: "source ↗", demo: "live demo ↗", apk: "download apk ↗", play: "play in browser ▶", privRepo: "private repository", shotsLink: "screenshots",
     warning: "warning:", shots: (t) => `Screenshots of ${t}`, then: ", then ", sep: ", ",
-    all: "all", now: "now", updated: (d) => `updated ${d}`,
+    all: "all", now: "now", distinction: "distinction", updated: (d) => `updated ${d}`,
     showingAll: (n) => `# showing all ${n} projects`, showing: (s, t, k) => `# showing ${s} of ${t} projects: ${k}`,
     copied: "Copied", copyFail: "Press Ctrl+C to copy",
     nowText: `second year at <span lang="el">ΔΙΠΑΕ Σερρών</span> (IHU) · teaching at <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`
@@ -733,7 +836,7 @@ const W = {
     stack: "τεχνολογίες", runs: "τρέχει-σε", period: "περίοδος", builtWith: "συνεργασία",
     pub: "δημόσιο", priv: "ιδιωτικό", source: "κώδικας ↗", demo: "live demo ↗", apk: "λήψη apk ↗", play: "παίξτε στον browser ▶", privRepo: "ιδιωτικό repository", shotsLink: "στιγμιότυπα",
     warning: "προσοχή:", shots: (t) => `Στιγμιότυπα του ${t}`, then: ", μετά ", sep: ", ",
-    all: "όλα", now: "τώρα", updated: (d) => `ενημερώθηκε ${d}`,
+    all: "όλα", now: "τώρα", distinction: "διάκριση", updated: (d) => `ενημερώθηκε ${d}`,
     showingAll: (n) => `# εμφανίζονται και τα ${n} projects`, showing: (s, t, k) => `# εμφανίζονται ${s} από ${t} projects: ${k}`,
     copied: "Αντιγράφηκε", copyFail: "Πατήστε Ctrl+C για αντιγραφή",
     nowText: `2ο έτος στο ΔΙΠΑΕ Σερρών (IHU) · διδασκαλία στο <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`
@@ -748,26 +851,30 @@ const EL = {
   skip: "Μετάβαση στα projects",
   brand_aria: "aloualou56, επιστροφή στην κορυφή",
   nav_aria: "Ενότητες",
-  nav_projects: "έργα", nav_about: "σχετικά", nav_log: "χρονολόγιο", nav_contact: "επικοινωνία",
+  nav_projects: "έργα", nav_awards: "διακρίσεις", nav_about: "σχετικά", nav_log: "χρονολόγιο", nav_contact: "επικοινωνία",
   theme_aria: "Εναλλαγή μεταξύ φωτεινού και σκούρου θέματος",
   eyebrow_1: "σπουδάζω και προγραμματίζω · 2ο έτος",
   eyebrow_2: "αυτή τη στιγμή στο ΔΙΠΑΕ Σερρών (IHU)",
   eyebrow_3: `διδάσκω: <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>`,
-  lead: `Γεια σας, με λένε Ηλία. Εδώ θα βρείτε τα <span data-count="projects">16</span> projects που έχω φτιάξει μέχρι τώρα, από ένα roguelike bullet-hell για Android μέχρι μια οθόνη e-paper με Raspberry Pi.`,
+  eyebrow_4: `<a href="#awards">1η θέση συνολικά, ARGUS Open Innovation Challenge 2026</a>`,
+  lead: `Γεια σας, με λένε Ηλία. Εδώ θα βρείτε τα <span data-count="projects">18</span> projects που έχω φτιάξει μέχρι τώρα, από ένα roguelike bullet-hell για Android μέχρι το Aegis, το παιχνίδι φύλαξης μνημείων που κέρδισε το ARGUS Open Innovation Challenge 2026.`,
   cta_projects: "δείτε τα projects ↓",
   glance_aria: "Με μια ματιά",
   k_role: "ιδιότητα", v_role: "σπουδές και ανάπτυξη λογισμικού, 2ο έτος",
   k_school: "πανεπιστήμιο", v_school: "ΔΙΠΑΕ Σερρών, Διεθνές Πανεπιστήμιο της Ελλάδος (IHU)",
   k_dept: "τμήμα", v_dept: `<a href="${DEPT_URL_EL}" target="_blank" rel="noopener" hreflang="el">Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών</a>`,
   k_teach: "διδασκαλία", v_teach: `<a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Panserraikos Robotic Sports</a>, Σέρρες: την νέα γενιά`,
+  k_awards: "διακρίσεις", v_awards: `<a href="#awards">1η συνολικά + 1η στο Track A, ARGUS 2026</a>· χρυσό, ασημένιο και χάλκινα στην 25η Ολυμπιάδα Ρομποτικής`,
   k_builds: "φτιάχνω", v_builds: "Παιχνίδια, web εφαρμογές, hardware gadgets",
   k_langs: "γλώσσες",
   k_runs: "τρέχει-σε", v_runs: "Android, browsers, Windows, ESP32, Raspberry Pi",
-  k_code: "κώδικας", v_code: `<span data-count="public">9</span> δημόσια, <span data-count="private">7</span> ιδιωτικά`,
-  k_latest: "τελευταίο", v_latest: `<a href="#nebula">Nebula Requiem</a>, native παιχνίδι για Android`,
+  k_code: "κώδικας", v_code: `<span data-count="public">10</span> δημόσια, <span data-count="private">8</span> ιδιωτικά`,
+  k_latest: "τελευταίο", v_latest: `<a href="#rogic-esp">Rogic to ESP32</a>, ελεγκτής ρομπότ μέσω Wi-Fi με δική του πλακέτα`,
   h_projects: "Έργα",
   projects_sub: "κάθε κάρτα λέει πού τρέχει το project · το λουκέτο σημαίνει ότι το repository είναι ιδιωτικό",
   filters_aria: "Φιλτράρισμα των projects ανά είδος",
+  h_awards: "Διακρίσεις",
+  awards_sub: "διαγωνισμοί όπου αγωνίστηκα ή έφτιαξα κάτι, και ένας όπου προετοίμασα αθλητές · πρώτα οι νεότεροι",
   h_about: "Σχετικά με εμένα",
   about_1: `Με λένε Ηλία και σπουδάζω στο 2ο έτος του Διεθνούς Πανεπιστημίου της Ελλάδος (ΔΙΠΑΕ) στις Σέρρες, στο <a href="${DEPT_URL_EL}" target="_blank" rel="noopener" hreflang="el">Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών</a>. Στον ελεύθερό μου χρόνο μου αρέσει να προγραμματίζω.`,
   about_2: `Διδάσκω επίσης τη νέα γενιά στο <a href="${TEAM_URL}" target="_blank" rel="noopener" hreflang="el">Τμήμα Αθλητικής Ρομποτικής του Μ.Γ.Σ. Πανσερραϊκός</a> στις Σέρρες, το οποίο παρουσιάζεται ως το πρώτο επίσημο τμήμα αθλητικής ρομποτικής στην Ελλάδα.`,
@@ -775,10 +882,10 @@ const EL = {
   about_4: "Δουλεύω με Python, Kotlin, Java, C++ και JavaScript και διαλέγω ό,τι ταιριάζει στη δουλειά. Μερικά projects υπάρχουν σε δύο εκδόσεις επίτηδες: το JavaGame ξαναγράφτηκε σε C++ ώστε να τρέχει σε Windows και Android, και το Nebula Requiem ξεκίνησε ως ένα μόνο αρχείο HTML πριν το ξαναγράψω εξ ολοκλήρου σε Kotlin.",
   about_5: "Γράφω τα README στα αγγλικά και μερικά και στα ελληνικά.",
   like_games: "Μοτίβα σφαιρών, συγκρούσεις, procedural κόσμοι και τα μαθηματικά πίσω τους.",
-  like_web: "Συστήματα κρατήσεων και διαχείρισης σχολείου, και τα δύο φτιαγμένα με Django.",
-  like_hw: "Οθόνες e-paper, ένα ESP32 monitor και μια εφαρμογή ανάγνωσης NFC.",
+  like_web: "Συστήματα κρατήσεων και διαχείρισης σχολείου σε Django, και ένα παιχνίδι σε χάρτη με React.",
+  like_hw: "Οθόνες e-paper, πλακέτες ESP32, εργαλεία για κιτ ρομποτικής και μια εφαρμογή ανάγνωσης NFC.",
   h_log: "Χρονολόγιο",
-  log_sub: "οι ημερομηνίες είναι το πρώτο και το τελευταίο commit κάθε repository στο GitHub · μερικά projects ξεκίνησαν πριν ανέβουν",
+  log_sub: "οι ημερομηνίες είναι το πρώτο και το τελευταίο commit κάθε repository στο GitHub · μερικά projects ξεκίνησαν πριν ανέβουν · το ★ σημαίνει διάκριση",
   h_tools: "Τι χρησιμοποιώ",
   h_contact: "Πείτε γεια",
   h_work: "Συνεργασία",
@@ -789,7 +896,7 @@ const EL = {
   copy_aria: "Αντιγραφή διεύθυνσης email",
   footer_text: `© <span id="year">2026</span> Ηλίας · απλό HTML, CSS και JavaScript`,
   footer_top: "πάνω ↑",
-  meta_desc: "Ηλίας: 2ο έτος στο ΔΙΠΑΕ Σερρών (Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών), διδασκαλία στο Τμήμα Αθλητικής Ρομποτικής του Πανσερραϊκού, παιχνίδια, web εφαρμογές και μικρές κατασκευές hardware. Projects, τεχνολογίες και επικοινωνία."
+  meta_desc: "Ηλίας: 2ο έτος στο ΔΙΠΑΕ Σερρών (Τμήμα Μηχανικών Πληροφορικής, Υπολογιστών και Τηλεπικοινωνιών), διδασκαλία στο Τμήμα Αθλητικής Ρομποτικής του Πανσερραϊκού, παιχνίδια, web εφαρμογές και μικρές κατασκευές hardware. 1η θέση στο ARGUS Open Innovation Challenge 2026. Projects, διακρίσεις, τεχνολογίες και επικοινωνία."
 };
 
 /* ============================== rendering ============================== */
@@ -812,7 +919,7 @@ function metaHtml(p) {
   const w = W[lang];
   const period = p.updated && p.updated !== p.started ? `${p.started} → ${p.updated}` : p.started;
   const rows = [[w.stack, esc(p.stack)], [w.runs, esc(T(p.runsOn))], [w.period, esc(period)]];
-  if (p.credit) rows.push([w.builtWith, `<a href="${esc(p.credit.url)}" target="_blank" rel="noopener">${esc(p.credit.label)}</a>`]);
+  if (p.credit) rows.push([w.builtWith, [].concat(p.credit).map((c) => c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(T(c.label))}</a>` : esc(T(c.label))).join(", ")]);
   return '<dl class="meta">' + rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("") + "</dl>";
 }
 function warnHtml(p) {
@@ -845,6 +952,7 @@ function cardHtml(p) {
     ${coverHtml(p)}
     <div class="body">
       <div class="topline">${kindsHtml(p)}${visHtml(p)}</div>
+      ${p.award ? `<a class="badge" href="#awards">${esc(T(p.award))}</a>` : ""}
       <h3>${esc(T(p.title))}</h3>
       <p class="tagline">${esc(T(p.tagline))}</p>
       <p class="desc">${esc(T(p.desc))}</p>
@@ -889,6 +997,16 @@ function renderFilters() {
   }).join("");
 }
 
+function renderAwards() {
+  $("#awards-list").innerHTML = AWARDS.map((a) => {
+    const links = (a.links || []).map((l) => `<a href="${esc(l.href)}"${l.ext ? ' target="_blank" rel="noopener"' : ""}${l.el ? ' hreflang="el"' : ""}>${esc(T(l.label))}</a>`).join("");
+    return `<li class="award${a.top ? " top" : ""}"${a.aw ? ` style="--aw:${a.aw}"` : ""}>
+      <div class="rank"><b>${esc(T(a.rank))}</b><small>${esc(T(a.rankNote))}</small><time>${esc(a.date)}</time></div>
+      <div><h3>${esc(T(a.title))}</h3><p class="role">${esc(T(a.role))}</p><p class="text">${esc(T(a.text))}</p>${links ? `<div class="links">${links}</div>` : ""}</div>
+    </li>`;
+  }).join("");
+}
+
 function renderStack() {
   $("#stack-list").innerHTML = STACK.map(([g, items]) =>
     `<div class="grp"><h3>${esc(T(g))}</h3><div class="tags">${items.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div>`).join("");
@@ -896,16 +1014,27 @@ function renderStack() {
 
 function renderLog() {
   const w = W[lang];
-  const sorted = [...PROJECTS].sort((a, b) => b.started.localeCompare(a.started) || T(a.title).localeCompare(T(b.title)));
+  const items = [
+    ...PROJECTS.map((p) => ({ kind: "p", key: p.started, p })),
+    ...AWARDS.map((a, i) => ({ kind: "a", key: a.when, a, i }))
+  ];
+  // Newest first; a year-only date ("2023") sorts after that year's months.
+  const sortKey = (k) => (k.length === 4 ? k + "-00" : k);
+  const sorted = items.sort((x, y) => sortKey(y.key).localeCompare(sortKey(x.key)) || (x.kind === "a" ? -1 : 1));
   const years = [];
   sorted.forEach((p) => {
-    const y = p.started.slice(0, 4);
+    const y = p.key.slice(0, 4);
     let g = years.find((x) => x.y === y);
     if (!g) years.push((g = { y, items: [] }));
     g.items.push(p);
   });
   const now = `<li class="now"><time>${w.now}</time><div class="what"><p class="what-t">${w.nowText}</p></div></li>`;
   const groups = years.map((g) => `<li class="yr-group"><p class="yr">${g.y}</p><ol>${g.items.map((p) => {
+    if (p.kind === "a") {
+      const a = p.a;
+      return `<li class="entry aw"><time datetime="${a.when}">${a.when}</time><div class="what"><a class="log-link" href="#awards">${esc(T(a.title))}</a><span class="aw-tag">${w.distinction}</span><p class="what-t">${esc(T(a.log))}</p></div></li>`;
+    }
+    p = p.p;
     const upd = p.updated && p.updated > p.started ? `<p class="upd">${w.updated(p.updated)}</p>` : "";
     return `<li class="entry"><time datetime="${p.started}">${p.started}</time><div class="what"><a class="log-link" href="#${esc(p.id)}">${esc(T(p.title))}</a>${kindsHtml(p)}<p class="what-t">${esc(T(p.tagline))}</p>${upd}</div></li>`;
   }).join("")}</ol></li>`).join("");
@@ -967,6 +1096,7 @@ function applyLang(l, { first = false, fromUser = false } = {}) {
   renderProjects();
   renderFilters();
   renderStack();
+  renderAwards();
   renderLog();
   updateCounts();
   setFilter(state.filter);
